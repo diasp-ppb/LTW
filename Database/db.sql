@@ -1,0 +1,10 @@
+
+
+DROP TABLE IF EXISTS users;
+CREATE TABLE Users (
+  usr VARCHAR(32) NOT NULL ,
+  pass VARCHAR(32) NOT NULL ,
+  email VARCHAR(60) NOT NULL ,
+  PRIMARY KEY(usr),
+  UNIQUE(email)
+);
