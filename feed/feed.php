@@ -20,7 +20,7 @@
 
 
       <div id="searchbar">
-          <form action="" method="get">
+          <form action="feed.php" method="get">
               <input type="text" name="search" placeholder="Search">
           </form>
       </div>
@@ -56,13 +56,16 @@
         <?php
             $rname = $_GET['rname'];
             $local = $_GET['local'];
+            $search = $_GET['search'];
 
             $db = new PDO('sqlite:../Database/dataBase.db');
 
             $stmt;
 
-            if($rname == '' && $local == '')
+            if($rname == '' && $local == '' && $search == '')
                 $stmt = $db->prepare("SELECT * FROM Restaurants ORDER BY avgClass DESC");
+            else if ($search != '')
+                $stmt = $db->prepare("SELECT * FROM Restaurants WHERE name = '$search' OR city = '$search' OR district = '$search' OR country = '$search' ORDER BY avgClass DESC");
             else
                 $stmt = $db->prepare("SELECT * FROM Restaurants WHERE name = '$rname' OR city = '$local' OR district = '$local' OR country = '$local' ORDER BY avgClass DESC");
 
