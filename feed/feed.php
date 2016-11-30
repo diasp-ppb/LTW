@@ -28,9 +28,14 @@
         <div id="maincontent">
             <h1>Já Comia</h1>
             <div id="mainsearch"/>
-                <form action="" method="get">
-                    <input type="text" name="rname" placeholder="Restaurant">
-                    <input type="text" name="local" placeholder="Location">
+                <form action="feed.php" method="get">
+                    <?php
+                        $rname = $_GET['rname'];
+                        $local = $_GET['local'];
+
+                        echo '<input type="text" name="rname" placeholder="Restaurant" value="' . $rname . '">';
+                        echo '<input type="text" name="local" placeholder="Location" value="' . $local . '">';
+                     ?>
                     <input type="submit" value="">
                 </form>
             </div>
@@ -39,9 +44,18 @@
 
     <div id="restaurantslist">
         <?php
+            $rname = $_GET['rname'];
+            $local = $_GET['local'];
+
             $db = new PDO('sqlite:../Database/dataBase.db');
 
-            $stmt = $db->prepare('SELECT * FROM Restaurants ORDER BY avgClass DESC');
+            $stmt;
+
+            if($rname == '' && $local == '')
+                $stmt = $db->prepare("SELECT * FROM Restaurants ORDER BY avgClass DESC");
+            else
+                $stmt = $db->prepare("SELECT * FROM Restaurants WHERE name = '$rname' OR city = '$local' OR district = '$local' OR country = '$local' ORDER BY avgClass DESC");
+
             $stmt->execute();
             $result = $stmt->fetchAll();
 
@@ -58,9 +72,7 @@
 
                  echo '<p>' .  "Proin ex tortor, rutrum a risus vitae, tincidunt varius nulla. Nulla vulputate velit non justo luctus molestie.
                      Quisque eleifend lacus eu sagittis dignissim. Duis pharetra eget odio et tempor. Morbi vitae tincidunt neque, eget consectetur purus.
-                     Nam in diam mi. Duis ut odio sit amet risus tincidunt consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                     Cras velit ligula, mollis in faucibus vitae, ullamcorper in velit. Aenean ultrices mi nec fringilla pharetra.
-                     Mauris massa mauris, facilisis a suscipit sit amet, volutpat id magna. Sed tempus sollicitudin quam." . '</p>';
+                     Nam in diam mi. Duis ut odio sit amet risus tincidunt consectetur. " . '</p>';
 
                      echo '<div class="rrating">';
                      echo '<p>' . $row['avgClass'], "/5" . '</p>';
