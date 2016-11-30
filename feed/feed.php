@@ -12,16 +12,26 @@
 
 <body>
 
-    <div id="topbar">
-        <h1>Já Comia</h1>
-        <p>USER NAME </p>
+  <div id="topbar">
+    <div id="topbar-elements">
 
-        <div id="searchbar">
-            <form action="" method="get">
-                <input type="text" name="search" placeholder="Search">
-            </form>
-        </div>
+      <h1>Já Comia</h1>
+
+
+
+      <div id="searchbar">
+          <form action="" method="get">
+              <input type="text" name="search" placeholder="Search">
+          </form>
+      </div>
+
+      <div id="topbar-login">
+        <p>USER NAME </p>
+      </div>
+
+
     </div>
+  </div>
 
     <div id="main">
         <img src="../resources/mainimg.gif"/>
