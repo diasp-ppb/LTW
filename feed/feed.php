@@ -92,7 +92,7 @@
                      echo '</div>';
 
                  echo '</div>';
-                 echo '<hr>';
+                
 
              }
         ?>
