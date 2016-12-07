@@ -1,37 +1,8 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-    <title>Já Comia - Feed</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-
-</head>
-
-
+<?php include_once('../templates/header.php') ?>
 <body>
 
-  <div id="topbar">
-    <div id="topbar-elements">
-
-      <h1>Já Comia</h1>
-
-
-
-      <div id="searchbar">
-          <form action="feed.php" method="get">
-              <input type="text" name="search" placeholder="Search">
-          </form>
-      </div>
-
-      <div id="topbar-login">
-        <p>USER NAME </p>
-      </div>
-
-
-    </div>
-  </div>
+<?php include_once('../templates/topbar.php') ?>
 
     <div id="main">
         <img src="../resources/mainimg.gif"/>
@@ -58,7 +29,9 @@
             $local = $_GET['local'];
             $search = $_GET['search'];
 
-            $db = new PDO('sqlite:../Database/dataBase.db');
+            include_once('../Database/Connect.php');
+
+
 
             $stmt;
 
@@ -92,7 +65,7 @@
                      echo '</div>';
 
                  echo '</div>';
-                
+
 
              }
         ?>
@@ -103,5 +76,4 @@
 
 </body>
 
-
-</html>
+<?php  include_once('../templates/footer.php') ?>
