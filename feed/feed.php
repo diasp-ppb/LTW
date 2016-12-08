@@ -36,11 +36,11 @@
             $stmt;
 
             if($rname == '' && $local == '' && $search == '')
-                $stmt = $db->prepare("SELECT * FROM Restaurants ORDER BY avgClass DESC");
+                $stmt = $db->prepare("SELECT *,rowid FROM Restaurants ORDER BY avgClass DESC");
             else if ($search != '')
-                $stmt = $db->prepare("SELECT * FROM Restaurants WHERE name = '$search' OR city = '$search' OR district = '$search' OR country = '$search' ORDER BY avgClass DESC");
+                $stmt = $db->prepare("SELECT *,rowid FROM Restaurants WHERE name = '$search' OR city = '$search' OR district = '$search' OR country = '$search' ORDER BY avgClass DESC");
             else
-                $stmt = $db->prepare("SELECT * FROM Restaurants WHERE name = '$rname' OR city = '$local' OR district = '$local' OR country = '$local' ORDER BY avgClass DESC");
+                $stmt = $db->prepare("SELECT *,rowid FROM Restaurants WHERE name = '$rname' OR city = '$local' OR district = '$local' OR country = '$local' ORDER BY avgClass DESC");
 
             $stmt->execute();
             $result = $stmt->fetchAll();
@@ -48,11 +48,13 @@
 
              foreach ($result as $row)
              {
+                 $link = "../restaurant/restaurant.php?id=" . $row['rowid'];
+                 
                  echo  '<div class="restaurant">';
 
                  echo '<img src="../resources/rex.jpg">';
 
-                 echo '<h1>' . $row['name'] . '</h1>';
+                 echo '<h1>' . '<a href=' . $link . '>' . $row['name'] . '</a>' . '</h1>';
 
                  echo '<h2>' . $row['city'] , ", " , $row['district'], ", ", $row['country']  . '</h2>';
 
