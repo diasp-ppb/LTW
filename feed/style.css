@@ -186,6 +186,10 @@ body {
     margin-top: 70px;
 }
 
+#restaurantslist a{
+    text-decoration: none;
+    color: currentColor;
+}
 .restaurant{
     padding-bottom: 30px;
     padding-top: 30px;

@@ -1,5 +1,7 @@
 DROP TABLE IF EXISTS Users;
 DROP TABLE IF EXISTS Restaurants;
+DROP TABLE IF EXISTS Reviews;
+
 
 CREATE TABLE Users (
     usr VARCHAR(32) NOT NULL,
@@ -19,4 +21,13 @@ CREATE TABLE Restaurants (
     avgClass REAL,
     owner INTEGER REFERENCES Users(rowID),
     PRIMARY KEY(name, address)
+);
+
+
+CREATE TABLE Reviews (
+    userID INTEGER REFERENCES Users(rowID),
+    restaurant INTEGER REFERENCES Restaurants(rowID),
+    title VARCHAR(64),
+    opinion VARCHAR(512),
+    classification INTEGER
 );
