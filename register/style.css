@@ -1,0 +1,48 @@
+body {
+    font-size: 13px/20px;
+    font-family: Tahoma, Verdana, sans-serif;
+    color: #404040;
+    background: #0ca3d2;
+}
+
+.loginBox {
+    margin: 80px auto;
+    width: 640px;
+}
+
+.login {
+    position: relative;
+    margin: 0 auto;
+    padding: 20px 20px 20px;
+    width: 310px;
+    background: white;
+    border-radius: 40px;
+    box-shadow: 5px 5px 6px #555;
+}
+
+.login>h1 {
+    margin: -20px -20px 21px;
+    line-height: 40px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    text-shadow: 00.5 0.5px gray;
+    background: #f3f3f3;
+    border-bottom: 1px solid #cecfdd;
+    border-radius: 40px 40px 0 0;
+}
+
+.login>form>input {
+  display: block;
+  margin: 0px auto;
+  margin-bottom: 5px;
+  padding: 10px;
+  border: solid 5px #c9c9c9;
+  transition: border 0.2s;
+}
+
+.login>form>input:focus,
+.login>form>input.focus{
+  border: solid 5px #969696;
+}
