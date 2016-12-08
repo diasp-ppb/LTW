@@ -1,88 +1,84 @@
-<?php
-
-
-include_once('../templates/header.php');
-
-?>
+<?php include_once '../templates/header.php'; ?>
 
 <body>
-<?php include_once('../templates/topbar.php'); ?>
-<div id="Intro">
+  <?php include_once '../templates/topbar.php'; ?>
 
-<img src="../resources/imgNewRestaurant.jpg" />
-<h1> Novo Restaurante <h1>
-</div>
+    <div id="Intro">
 
-<div id="FormNewRestaurant">
+        <img src="../resources/imgNewRestaurant.jpg" />
+        <h1> Novo Restaurante <h1>
+    </div>
 
 
-<form action="newRestaurant.php"  method="get">
+
+
+    <div id="FormNewRestaurant">
+
+
+      <form action="newRestaurant.php"  method="post">
+
+        <?php
+
+        $name = $_POST['name'];
+        $address = $_POST['address'];
+        $city = $_POST['city'];
+        $district = $_POST['district'];
+        $country = $_POST['country'];
+        $type = $_POST['type'];
+
+        echo '
+        <label> Nome </label>
+          <input type="text" name="name" value="'.$name.'"required >
+        <label> Rua </label>
+          <input type="text" name="address" value="'.$address.'"required>
+        <label> Cidade </label>
+          <input type="text" name="city" value="'.$city.'"required>
+        <label> Distrito </label>
+          <input type="text" name="district" value="'.$district.'"required>
+        <label> Pais </label>
+          <input type="text" name="country" value="'.$country.'"required>
+        <label> Tipo </label>
+          <input type="text" name="type" value="'.$type.'" required>';
+
+        ?>
+        <input type="submit" name="Regist" value="Submit">
+
+      </form>
+
+    </div>
 
 <?php
+ if( isset($_POST['Regist'] )){
+        $name = $_POST['name'];
+        $address = $_POST['address'];
+        $city = $_POST['city'];
+        $district = $_POST['district'];
+        $country = $_POST['country'];
+        $type = $_POST['type'];
 
-$name = $_GET['name'];
-$address = $_GET['address'];
-$city = $_GET['city'];
-$district = $_GET['district'];
-$country = $_GET['country'];
-$type = $_GET['type'];
+        include_once '../Database/Connect.php';
 
+        $query = $db->prepare("INSERT INTO Restaurants (name, address, type, city, district, country, avgClass, owner)
+                   VALUES ('$name','$address','$type','$city','$district','$country',0, NULL);");
 
-echo '
-<label> Nome </label>
-  <input type="text" name="name" value="'.$name.'"required >
-<label> Rua </label>
-  <input type="text" name="address" value="'.$address.'"required>
-<label> Cidade </label>
-  <input type="text" name="city" value="'.$city.'"required>
-<label> Distrito </label>
-  <input type="text" name="district" value="'.$district.'"required>
-<label> Pais </label>
-  <input type="text" name="country" value="'.$country.'"required>
-<label> Tipo </label>
-  <input type="text" name="type" value="'. $type. '" required>';
-
-?>
-<input type="submit" value="Submit">
-
-</form>
-
-</div>
-
-<?php
-
-$name = $_GET['name'];
-$address = $_GET['address'];
-$city = $_GET['city'];
-$district = $_GET['district'];
-$country = $_GET['country'];
-$type = $_GET['type'];
-
- include_once('../Database/Connect.php');
-
-
-
-$query = $db->prepare("INSERT INTO Restaurants (name, address, type, city, district, country, avgClass, owner)
-               VALUES ('$name','$address','$type','$city','$district','$country',0, NULL);");
-
-try{
-  $query->execute();
-  echo '<div id = Msg >
-        <h2> O restaurante foi registado </h2>
-        </div>
-       ';
+        try {
+            $query->execute();
+            echo '<div id = Msg >
+                      <h2> O restaurante foi registado </h2>
+                      </div>
+                      ';
+        } catch (PDOException $e) {
+            echo '<div id = Msg >
+                      <h2> O restaurante já se encontra registado </h2>
+                      </div>
+                      ';
+        }
 }
-catch(PDOException $e){
-
-
-echo '<div id = Msg >
-      <h2> O restaurante já se encontra registado </h2>
-      </div>
-     ';
-}
-
 ?>
 
 
 </body>
-<?php include_once('../templates/footer.php'); ?>
+
+
+
+<?php include_once '../templates/footer.php'; ?>
