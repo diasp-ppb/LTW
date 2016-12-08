@@ -6,7 +6,7 @@
 
 
     <div id="searchbar">
-        <form action="feed.php" method="get">
+        <form action="../feed/feed.php" method="get">
             <input type="text" name="search" placeholder="Search">
         </form>
     </div>

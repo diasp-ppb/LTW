@@ -69,6 +69,7 @@ body {
 
 #main img{
     width: 400px;
+    margin-top: 20px;
 }
 
 #main h1{
@@ -95,4 +96,34 @@ body {
     display: inline;
     margin-top: 125px;
     position: absolute;
+}
+
+#reviews{
+    width: 1000px;
+    margin: auto;
+}
+
+.review{
+    height: 130px;
+}
+.review p:first-child{
+    margin-left: 00px;
+    position: absolute;
+    margin-top: 45px;
+    font-size: 22px;
+}
+
+.review  h2 {
+    margin-left: 150px;
+}
+
+.review p{
+    margin-left: 150px;
+}
+
+.revClass{
+    float: right;
+    margin-right: 60px;
+    margin-top: -45px;
+    font-size: 28px;
 }

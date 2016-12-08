@@ -18,13 +18,17 @@
 
     <div id="main">
         <?php
-        $id = $_GET['id'];
+        if(!isset($_GET['id']))
+            $id = 1;
+        else
+            $id = $_GET['id'];
+
 
         $db = new PDO('sqlite:../Database/dataBase.db');
 
-        $stmt = $db->prepare("SELECT *, rowid FROM Restaurants WHERE rowid = '$id'");
-        $stmt->execute();
-        $result = $stmt->fetchAll();
+        $query = $db->prepare("SELECT *, rowid FROM Restaurants WHERE rowid = '$id'");
+        $query->execute();
+        $result = $query->fetchAll();
 
         $result = $result[0];
 
@@ -37,6 +41,31 @@
         echo '<div class="avgClass"> <h2>' . $result['avgClass'], "/5" .  '</h2> </div>';
 
         echo '<p> Type: ' .  $result['type'] . '</p>';
+
+        ?>
+    </div>
+
+    <div id="reviews">
+        <?php
+        //SELECT * FROM Reviews JOIN Restaurants ON (Restaurants.rowID = Reviews.restaurant) JOIN Users ON (Users.rowID = Reviews.userID);
+        $db = new PDO('sqlite:../Database/dataBase.db');
+        $query = $db->prepare("SELECT * FROM Reviews JOIN Restaurants ON (Restaurants.rowID = Reviews.restaurant)
+                                                            JOIN Users ON (Users.rowID = Reviews.userID)
+                                                            WHERE Restaurants.rowID = '$id'");
+        $query->execute();
+        $result = $query->fetchAll();
+
+
+        foreach ($result as $row) {
+            echo '<div class="review">';
+            echo '<p>' . $row['usr'] . '</p>';
+            echo '<h2>' . $row['title'] . '</h2>';
+            echo '<p>' . $row['opinion'] . '</p>';
+            echo '<p class="revClass">' . $row['classification'],"/5" . '</p>';
+            echo '</div>';
+            echo '<hr>';
+        }
+
         ?>
     </div>
 
