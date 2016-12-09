@@ -19,7 +19,7 @@
     <div id="main">
         <?php
         if(!isset($_GET['id']))
-            $id = 1;
+            header('Location:  ../feed/feed.php');
         else
             $id = $_GET['id'];
 

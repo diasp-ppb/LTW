@@ -1,0 +1,55 @@
+body {
+    font-size: 18px;
+    font-family: Tahoma, Verdana, sans-serif;
+    color: #404040;
+    background: #f9f9f9;
+    margin: auto;
+    overflow-x: hidden;
+    min-width: 700px;
+}
+
+
+#topbar{
+    margin-top: -70px;
+}
+
+#main{
+    width: 1000px;
+    margin: auto;
+    margin-top: 70px;
+}
+
+#main img{
+    width: 400px;
+    margin-top: 20px;
+}
+
+#main h1{
+    margin-left: 30px;
+    display: inline;
+    position: absolute;
+}
+
+#main h2{
+    margin-left: 30px;
+    display: inline;
+    margin-top: 80px;
+    position: absolute;
+}
+
+.avgClass{
+    display: inline;
+    margin-top: 80px;
+    position: absolute;
+}
+
+#main p{
+    margin-left: 30px;
+    display: inline;
+    margin-top: 125px;
+    position: absolute;
+}
+
+#restID {
+    display: none;
+}
