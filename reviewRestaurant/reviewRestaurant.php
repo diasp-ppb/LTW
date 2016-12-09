@@ -13,15 +13,15 @@
 <body>
 
     <?php
-        include_once('../templates/topbar.php');
+    include_once('../templates/topbar.php');
     ?>
 
     <div id="main">
         <?php
         if(!isset($_GET['id']))
-            header('Location:  ../feed/feed.php');
+        header('Location:  ../feed/feed.php');
         else
-            $id = $_GET['id'];
+        $id = $_GET['id'];
 
 
         $db = new PDO('sqlite:../Database/dataBase.db');
@@ -49,37 +49,54 @@
     <div id="review">
         <form action="reviewRestaurant.php" method="get">
             <?php
-                $id = $_GET['id'];
-                echo '<input type="text" id="restID" name="id" value="' . $id . '"  >';
+            $id = $_GET['id'];
+            echo '<input type="text" id="restID" name="id" value="' . $id . '"  >';
             ?>
             <input type="text" name="title" placeholder="Title (optional)" autocomplete="off" maxlength="64"/>
             <textarea name="comment" maxlength="1024" placeholder="Comment (optional)"></textarea>
-            <input type="range" name="classification" min="1" max="5">
+            <!--input type="range" name="classification" min="1" max="5"-->
+            <span class="rating">
+                <input type="radio" class="rating-input"
+                    id="rating-input5" name="classification" value="5" required>
+                <label for="rating-input5" class="rating-star"></label>
+                <input type="radio" class="rating-input"
+                    id="rating-input4" name="classification" value="4">
+                <label for="rating-input4" class="rating-star"></label>
+                <input type="radio" class="rating-input"
+                    id="rating-input3" name="classification" value="3">
+                <label for="rating-input3" class="rating-star" ></label>
+                <input type="radio" class="rating-input"
+                    id="rating-input2" name="classification" value="2">
+                <label for="rating-input2" class="rating-star"></label>
+                <input type="radio" class="rating-input"
+                    id="rating-input1" name="classification" value="1">
+                <label for="rating-input1" class="rating-star"></label>
+            </span>
             <input type="submit" name="Submit" value="Submit">
         </form>
 
     </div>
 
     <?php
-        if(isset($_GET['Submit'])){
-            $id = $_GET['id'];
-            $title = $_GET['title'];
-            $comment = $_GET['comment'];
-            $classification = $_GET['classification'];
+    if(isset($_GET['Submit'])){
+        $id = $_GET['id'];
+        $title = $_GET['title'];
+        $comment = $_GET['comment'];
+        $classification = $_GET['classification'];
 
-            include_once '../Database/Connect.php';
+        include_once '../Database/Connect.php';
 
-            $insert = $db->prepare("INSERT INTO Reviews (userID, restaurant, title, opinion, classification)
-                                    VALUES (1,'$id','$title','$comment','$classification');"); //TODO - change userID
+        $insert = $db->prepare("INSERT INTO Reviews (userID, restaurant, title, opinion, classification)
+        VALUES (1,'$id','$title','$comment','$classification');"); //TODO - change userID
 
 
-            try {
-                $insert->execute();
-                header('Location: thankyou.php');
-            } catch (PDOException $e) {
-                echo 'Fail inserting review!';
-            }
+        try {
+            $insert->execute();
+            header('Location: thankyou.php');
+        } catch (PDOException $e) {
+            echo 'Fail inserting review!';
         }
+    }
     ?>
 
 </body>
