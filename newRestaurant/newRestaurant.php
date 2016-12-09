@@ -45,6 +45,14 @@
 
       </form>
 
+
+      <form action="../templates/uploadImage.php" method="post" enctype="multipart/form-data">
+          <label>Select image to upload:</label>
+          <input type="file" name="fileToUpload" id="fileToUpload">
+          <input type="submit" value="Upload Image" name="submit">
+      </form>
+
+
     </div>
 
 <?php
@@ -58,8 +66,8 @@
 
         include_once '../Database/Connect.php';
 
-        $query = $db->prepare("INSERT INTO Restaurants (name, address, type, city, district, country, avgClass, owner)
-                   VALUES ('$name','$address','$type','$city','$district','$country',0, NULL);");
+        $query = $db->prepare("INSERT INTO Restaurants (name, address, type, city, district, country, avgClass)
+                   VALUES ('$name','$address','$type','$city','$district','$country',NULL);");
 
         try {
             $query->execute();
