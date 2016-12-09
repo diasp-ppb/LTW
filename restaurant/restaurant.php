@@ -42,6 +42,10 @@
 
         echo '<p> Type: ' .  $result['type'] . '</p>';
 
+        $reviewLink = "../reviewRestaurant/reviewRestaurant.php?id=" . $id;
+
+        echo '<a href="' . $reviewLink . '">Review this Restaurant </a>';
+
         ?>
     </div>
 

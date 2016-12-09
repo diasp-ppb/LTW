@@ -8,7 +8,6 @@ body {
     min-width: 700px;
 }
 
-
 #topbar{
     margin-top: -70px;
 }
@@ -52,4 +51,34 @@ body {
 
 #restID {
     display: none;
+}
+
+#review{
+    margin-top: 40px;
+}
+
+form{
+    width: 1000px;
+    margin: auto;
+}
+
+input{
+    display: block;
+    height: 35px;
+}
+
+input[type="text"]{
+    width: 400px;
+    height: 35px;
+}
+
+input[type="msg"]{
+    width: 600px;
+    height: 200px;
+}
+
+textarea{
+    margin-top: 20px;
+    width: 600px;
+    height: 200px;
 }

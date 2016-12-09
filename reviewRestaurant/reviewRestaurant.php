@@ -52,8 +52,8 @@
                 $id = $_GET['id'];
                 echo '<input type="text" id="restID" name="id" value="' . $id . '"  >';
             ?>
-            <input type="text" name="title" placeholder="Title"/>
-            <input type="msg" name="comment" placeholder="Comment"/>
+            <input type="text" name="title" placeholder="Title (optional)" autocomplete="off" maxlength="64"/>
+            <textarea name="comment" maxlength="1024" placeholder="Comment (optional)"></textarea>
             <input type="range" name="classification" min="1" max="5">
             <input type="submit" name="Submit" value="Submit">
         </form>
@@ -70,11 +70,11 @@
             include_once '../Database/Connect.php';
 
             $insert = $db->prepare("INSERT INTO Reviews (userID, restaurant, title, opinion, classification)
-                       VALUES (1,'$id','$title','$comment','$classification');"); //TODO - change userID
+                                    VALUES (1,'$id','$title','$comment','$classification');"); //TODO - change userID
 
 
             try {
-                $query->execute();
+                $insert->execute();
                 header('Location: thankyou.php');
             } catch (PDOException $e) {
                 echo 'Fail inserting review!';
