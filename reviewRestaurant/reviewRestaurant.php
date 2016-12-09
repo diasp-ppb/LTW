@@ -55,7 +55,7 @@
             <input type="text" name="title" placeholder="Title (optional)" autocomplete="off" maxlength="64"/>
             <textarea name="comment" maxlength="1024" placeholder="Comment (optional)"></textarea>
             <!--input type="range" name="classification" min="1" max="5"-->
-            <span class="rating">
+            <span class="rating"> <!-- from: https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html !-->
                 <input type="radio" class="rating-input"
                     id="rating-input5" name="classification" value="5" required>
                 <label for="rating-input5" class="rating-star"></label>
