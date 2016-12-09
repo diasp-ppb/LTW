@@ -5,7 +5,10 @@
     <title>J? Comia - Login</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
-
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -16,6 +19,7 @@
             <form action="register.php" method="POST">
                 <input type="text" name="user" placeholder="Username"/>
                 <input type="password" name="pass" placeholder="Password"/>
+                <input type="password" name="confirm" placeholder="Confirm your password"/>
                 <input type="email" name="email" placeholder="Email"/>
                 <input type="submit" value="Register"/>
             </form>
@@ -24,6 +28,30 @@
     </section>
 
 </body>
+
+<script>
+$('form').submit(function () {
+    var user = $.trim($('input[name="user"]').val());
+    var pass = $.trim($('input[name="pass"]').val());
+    var confirm = $.trim($('input[name="confirm"]').val());
+
+    if (user === '') {
+        alert('Please choose a username.');
+        return false;
+    }
+
+    if (pass === '') {
+        alert('Please write a password.');
+        return false;
+    }
+
+    if (pass !== confirm) {
+        alert('Password does not match the confirmation field.');
+        return false;
+    }
+});
+
+</script>
 
 
 </html>
