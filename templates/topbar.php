@@ -6,7 +6,7 @@
 <div id="topbar">
   <div id="topbar-elements">
 
-    <h1>Já Comia</h1>
+    <h1><a href="../feed/feed.php">Já Comia</a></h1>
 
 
 
