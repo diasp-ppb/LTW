@@ -42,7 +42,7 @@
     </div>
     <div id="login-box" class="box">
         <ul class="box-select">
-            <li class="box-option" onClick="boxHandler(event)">Login</li>
+            <li class="box-option active" onClick="boxHandler(event)">Login</li>
             <li class="box-option" onClick="boxHandler(event)">Registar</li>
         </ul>
         <div id="login">
