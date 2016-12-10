@@ -20,6 +20,8 @@ if (isset($_POST["user"])) {
     } else {
         echo "\nLogin falhou.\n";
     }
+
+    header('Location: ../feed/feed.php');
 }
 
 ?>
