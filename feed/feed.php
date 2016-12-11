@@ -57,10 +57,8 @@
         echo '<h1>' . '<a href=' . $link . '>' . $row['name'] . '</a>' . '</h1>';
 
         echo '<h2>' . $row['city'] , ", " , $row['district'], ", ", $row['country']  . '</h2>';
-
-        echo '<p>' .  "Proin ex tortor, rutrum a risus vitae, tincidunt varius nulla. Nulla vulputate velit non justo luctus molestie.
-        Quisque eleifend lacus eu sagittis dignissim. Duis pharetra eget odio et tempor. Morbi vitae tincidunt neque, eget consectetur purus.
-        Nam in diam mi. Duis ut odio sit amet risus tincidunt consectetur. " . '</p>';
+ 
+        echo '<p>' .  $row['description'] . '</p>';
 
         echo '<div class="rrating">';
         if($row['avgClass'] != NULL)
