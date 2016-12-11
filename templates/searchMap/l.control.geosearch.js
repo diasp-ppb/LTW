@@ -41,16 +41,16 @@ L.Control.GeoSearch = L.Control.extend({
 
     resetLink: function(extraClass) {
         var link = this._container.querySelector('a');
-        link.className = 'leaflet-bar-part leaflet-bar-part-single' + ' ' + extraClass;
+    //    link.className = 'leaflet-bar-part leaflet-bar-part-single' + ' ' + extraClass;
     },
 
     onAdd: function (map) {
         this._container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-geosearch');
 
         // create the link - this will contain one of the icons
-        var link = L.DomUtil.create('a', '', this._container);
+        /*var link = L.DomUtil.create('a', '', this._container);
         link.href = '#';
-        link.title = this._config.searchLabel;
+        link.title = this._config.searchLabel;*/
 
         // set the link's icon to magnifying glass
         this.resetLink('glass');
@@ -59,15 +59,15 @@ L.Control.GeoSearch = L.Control.extend({
         var form = L.DomUtil.create('form', 'displayNone', this._container);
 
         // create the input, and set its placeholder text
-        var searchbox = L.DomUtil.create('input', null, form);
-        searchbox.type = 'text';
-        searchbox.placeholder = this._config.searchLabel;
-        this._searchbox = searchbox;
+        //var searchbox = L.DomUtil.create('input', null, form);
+        //searchbox.type = 'text';
+        //searchbox.placeholder = this._config.searchLabel;
+        //this._searchbox = searchbox;
 
         var msgbox = L.DomUtil.create('div', 'leaflet-bar message displayNone', this._container);
         this._msgbox = msgbox;
 
-        L.DomEvent
+    /*    L.DomEvent
             .on(link, 'click', L.DomEvent.stopPropagation)
             .on(link, 'click', L.DomEvent.preventDefault)
             .on(link, 'click', function() {
@@ -80,12 +80,12 @@ L.Control.GeoSearch = L.Control.extend({
                 }
 
             })
-            .on(link, 'dblclick', L.DomEvent.stopPropagation);
+            .on(link, 'dblclick', L.DomEvent.stopPropagation);*/
 
-        L.DomEvent
+    /*    L.DomEvent
             .addListener(this._searchbox, 'keypress', this._onKeyPress, this)
             .addListener(this._searchbox, 'keyup', this._onKeyUp, this)
-            .addListener(this._searchbox, 'input', this._onInput, this);
+            .addListener(this._searchbox, 'input', this._onInput, this);*/
 
         L.DomEvent.disableClickPropagation(this._container);
 
@@ -116,7 +116,7 @@ L.Control.GeoSearch = L.Control.extend({
         var form = this._container.querySelector('form');
         L.DomUtil.addClass(form, 'displayNone');
 
-        this._searchbox.value = '';
+        //this._searchbox.value = '';
         this.resetLink('glass');
 
         L.DomUtil.addClass(this._msgbox, 'displayNone');
