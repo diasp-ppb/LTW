@@ -63,12 +63,31 @@
         Nam in diam mi. Duis ut odio sit amet risus tincidunt consectetur. " . '</p>';
 
         echo '<div class="rrating">';
+        if($row['avgClass'] != NULL)
         echo '<p>' . $row['avgClass'], "/5" . '</p>';
+        else
+        echo '<p>  Nan </p>';
 
         echo '</div>';
-        echo '<div class="rstars">';
-        for($i = 0; $i < $row['avgClass']; $i++)
+
+         $rounded = round($row['avgClass']);
+
+        if($rounded <= 1)
+        echo '<div class="rstars" style="margin-left: 910px;">';
+        else if($rounded <= 2)
+        echo '<div class="rstars" style="margin-left: 900px;">';
+        else if($rounded <= 3)
+        echo '<div class="rstars" style="margin-left: 890px;">';
+        else if($rounded <= 4)
+        echo '<div class="rstars" style="margin-left: 880px;">';
+        else if($rounded <= 5)
+        echo '<div class="rstars" style="margin-left: 875px;">';
+
+        
+
+        for($i = 0; $i < $rounded ; $i++)
         echo '<img style="width:20px; height:18px;" src="../resources/star.png">';
+    
         echo '</div>';
 
 
