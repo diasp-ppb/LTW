@@ -20,6 +20,7 @@ CREATE TABLE Restaurants (
     city VARCHAR(32) NOT NULL,
     district VARCHAR(32) NOT NULL,
     country VARCHAR(32) NOT NULL,
+    description VARCHAR(1024) ,
     avgClass REAL,
     PRIMARY KEY(name, address)
 );
@@ -46,6 +47,14 @@ CREATE TABLE Images (
     restaurant INTEGER REFERENCES Restaurants(rowID),
     name VARCHAR(256) NOT NULL,
     PRIMARY KEY (name)
+);
+
+
+CREATE TABLE ReviewComments (
+    review INTEGER REFERENCES Reviews(rowID),
+    user INTEGER REFERENCES Users(rowID), 
+    data INTEGER NOT NULL,
+    PRIMARY KEY ( review, user , data )
 );
 
 

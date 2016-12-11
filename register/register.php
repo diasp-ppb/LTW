@@ -12,6 +12,16 @@ if (isset($_POST["user"])) {
 
     $stmt = $db->prepare("INSERT INTO Users VALUES ('".$user."','".$mdPass."','".$email."')");
     $result = $stmt->execute();
-}
 
+
+
+
+  	session_start();
+	$_SESSION["user"] = $user;
+
+
+	 header('Location: ../feed/feed.php');
+}
+	
+	
 ?>
