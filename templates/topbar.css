@@ -82,7 +82,6 @@
     padding-top: 10px;
     padding-bottom: 10px;
     width: 157px;
-    ;
     text-shadow: 0px;
     background-color: #f9f9f9;
     font-size: 15px;
@@ -139,6 +138,7 @@
 
 .box-option:hover {
     background: #72b352;
+    cursor: pointer;
 }
 
 .box-option:focus, .active {
