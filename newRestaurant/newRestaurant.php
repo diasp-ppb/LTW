@@ -35,7 +35,7 @@
           <input type="text" name="city" value="'.$city.'"required>
         <label> Distrito </label>
           <input type="text" name="district" value="'.$district.'"required>
-        <label> Pais </label>
+        <label> País </label>
           <input type="text" name="country" value="'.$country.'"required>
         <label> Tipo </label>
           <input type="text" name="type" value="'.$type.'" required>';

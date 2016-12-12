@@ -102,3 +102,35 @@ body {
 #mapid p{
     display: none;
 }
+
+#editRestaurant{
+    margin-top: 100px;
+    display: none;
+}
+
+#editRestaurant p{
+    margin-left: 0px;
+    margin-top: -50px;
+    font-size: 26px;
+}
+
+#editRestaurant input:first-child{
+    display: none;
+}
+
+#editRestaurant input{
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#editRestaurant textarea{
+    display: block;
+    width: 500px;
+    height: 200px;
+}
+
+.edit{
+    margin-top: -220px;
+    margin-left: 350px;
+}

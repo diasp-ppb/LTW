@@ -29,6 +29,7 @@
     }
     window.onload = loadMap;
     </script>
+    <script src="restaurant.js"></script>
 
 </head>
 
@@ -48,6 +49,15 @@
 
 
         $db = new PDO('sqlite:../Database/dataBase.db');
+
+
+    /*    $user; //TODO - check if current user is owner
+        if (isset($_SESSION["user"]))
+            $user = $_SESSION["user"];
+
+        $getowners = $db->prepare("SELECT * FROM Restaurants JOIN Owners ON Owners.restaurant = Restaurants.rowid JOIN Users ON Owners.owner = Users.rowid");
+        $getowners->execute();
+*/
 
         $query = $db->prepare("SELECT *, rowid FROM Restaurants WHERE rowid = '$id'");
         $query->execute();
@@ -71,21 +81,53 @@
 
         echo '<a href="' . $reviewLink . '">Review this Restaurant </a>';
 
+        echo '<div class="edit"><a href="#" onclick="changeEdit();"> Edit Restaurant </a></div>';
+
         echo '<div id="mapid">';
         echo '<p id="restloc">' . $result['address'] . ', ' .  $result['city'] . ', ' . $result['country'] . '</p>';
 
         echo '</div>';
+
+        echo '<div id="editRestaurant">';
+        echo '<p>Edit this restaurant: </p>';
+
+        echo '<form action="restaurant.php"  method="post">';
+        echo '
+        <input type="text" name="id" value=" '. $id . '">
+        <label> Nome </label>
+          <input type="text" name="name" value="'.$result['name'].'"required >
+        <label> Rua </label>
+          <input type="text" name="address" value="'.$result['address'].'"required>
+        <label> Cidade </label>
+          <input type="text" name="city" value="'.$result['city'].'"required>
+        <label> Distrito </label>
+          <input type="text" name="district" value="'.$result['district'].'"required>
+        <label> País </label>
+          <input type="text" name="country" value="'.$result['country'].'"required>
+        <label> Tipo </label>
+          <input type="text" name="type" value="'.$result['type'].'" required>
+         <label> Descrição </label>
+          <textarea name="description" maxlength="1024" required>'. $result['description'] . '</textarea>
+
+        <input type="submit" name="Edit" value="Submit">
+        ';
+
+
+        echo '</form>';
+
+
+        echo '</div>';
+
 
         ?>
     </div>
 
     <div id="reviews">
         <?php
-        //SELECT * FROM Reviews JOIN Restaurants ON (Restaurants.rowID = Reviews.restaurant) JOIN Users ON (Users.rowID = Reviews.userID);
-        $db = new PDO('sqlite:../Database/dataBase.db');
+        include_once '../Database/Connect.php';
         $query = $db->prepare("SELECT * FROM Reviews JOIN Restaurants ON (Restaurants.rowID = Reviews.restaurant)
-        JOIN Users ON (Users.rowID = Reviews.userID)
-        WHERE Restaurants.rowID = '$id'");
+                                                     JOIN Users ON (Users.rowID = Reviews.userID)
+                                                     WHERE Restaurants.rowID = '$id'");
         $query->execute();
         $result = $query->fetchAll();
 
@@ -103,6 +145,33 @@
         ?>
     </div>
 
+    <?php
+        if(isset($_POST['Edit'])){
+            $id = $_POST['id'];
+            $name = $_POST['name'];
+            $address = $_POST['address'];
+            $city = $_POST['city'];
+            $district = $_POST['district'];
+            $country = $_POST['country'];
+            $type = $_POST['type'];
+            $description = $_POST['description'];
+
+            include_once '../Database/Connect.php';
+
+            $update = $db->prepare("UPDATE Restaurants SET name = '$name', address = '$address', city = '$city', district = '$district',
+                                                           country = '$country', type = '$type', description = '$description'
+                                                           WHERE rowid = $id");
+
+            try{
+                $update->execute();
+            }catch (PDOException $e) {
+                echo 'Error updating';
+            }
+
+
+        }
+
+    ?>
 
 
 </body>
