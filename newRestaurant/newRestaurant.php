@@ -14,7 +14,7 @@
 
     <div id="FormNewRestaurant">
 
-    <?php if(isset($_SESSION['user'])) 
+    <?php if(isset($_SESSION['user']))
     {
     ?>
       <form action="newRestaurant.php"  method="post">
@@ -54,7 +54,7 @@
           <input type="submit" value="Upload Image" name="submit">
       </form>
 
-      <?php 
+      <?php
         } else {
         echo '<h1> Precisa de iniciar sessão para criar um restaurante </h1>';
       }
@@ -73,20 +73,42 @@
         include_once '../Database/Connect.php';
 
         $query = $db->prepare("INSERT INTO Restaurants (name, address, type, city, district, country, avgClass)
-                   VALUES ('$name','$address','$type','$city','$district','$country',NULL);");
+                               VALUES ('$name','$address','$type','$city','$district','$country',NULL);");
 
         try {
             $query->execute();
-            echo '<div id = Msg >
-                      <h2> O restaurante foi registado </h2>
-                      </div>
-                      ';
         } catch (PDOException $e) {
             echo '<div id = Msg >
                       <h2> O restaurante já se encontra registado </h2>
                       </div>
                       ';
         }
+
+        $getid = $db->prepare("SELECT rowid FROM Restaurants WHERE name = '$name' AND address = '$address' AND country = '$country' AND type = '$type';");
+        $getid->execute();
+        $id = $getid->fetchAll();
+        $id = $id[0];
+        $num = $id['rowid'];
+
+        $username = $_SESSION["user"];
+        $getuserid = $db->prepare("SELECT rowid FROM Users WHERE usr = '$username';");
+        $getuserid->execute();
+        $use = $getuserid->fetchAll();
+        $userid = $use[0];
+        $usernum = $userid['rowid'];
+
+        $insertowner = $db->prepare("INSERT INTO Owners (owner, restaurant) VALUES('$usernum', '$num');");
+        try {
+            $insertowner->execute();
+            echo '<div id ="Msg" >
+                      <h2> O restaurante foi registado </h2>
+                      </div>';
+        } catch (PDOException $e){
+            echo '<div id ="Msg" >
+                      <h2> Erro ao registar restaurante </h2>
+                      </div>';
+        }
+
 }
 ?>
 
