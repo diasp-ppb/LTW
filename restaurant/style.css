@@ -134,3 +134,16 @@ body {
     margin-top: -220px;
     margin-left: 350px;
 }
+
+
+#replyReview{
+    display: block;
+}
+
+#replyReview form input{
+    display: inline-block;
+}
+
+#replyReview form textarea {
+    display: inline-block;
+}

@@ -14,7 +14,9 @@
 
     <div id="FormNewRestaurant">
 
-
+    <?php if(isset($_SESSION['user'])) 
+    {
+    ?>
       <form action="newRestaurant.php"  method="post">
 
         <?php
@@ -52,7 +54,11 @@
           <input type="submit" value="Upload Image" name="submit">
       </form>
 
-
+      <?php 
+        } else {
+        echo '<h1> Precisa de iniciar sessão para criar um restaurante </h1>';
+      }
+      ?>
     </div>
 
 <?php

@@ -50,14 +50,32 @@
 
         $db = new PDO('sqlite:../Database/dataBase.db');
 
+        if(isset($_SESSION["user"])){
 
-    /*    $user; //TODO - check if current user is owner
-        if (isset($_SESSION["user"]))
-            $user = $_SESSION["user"];
+           
+            
+            include_once("../Database/Connect.php");
 
-        $getowners = $db->prepare("SELECT * FROM Restaurants JOIN Owners ON Owners.restaurant = Restaurants.rowid JOIN Users ON Owners.owner = Users.rowid");
-        $getowners->execute();
-*/
+            $queryUser = $_SESSION["user"];
+
+
+            $isOwner = $db->prepare("SELECT * FROM Owners  JOIN Restaurants ON Owners.restaurant = Restaurants.rowID JOIN Users ON Users.rowID = Owners.owner WHERE Users.usr = '$queryUser' AND Restaurants.rowID = '$id'");
+            $isOwner->execute();
+
+            $isOwnerResult = $isOwner-> fetchAll();
+
+ 
+            
+            if(count($isOwnerResult) <= 0)
+                $owner = False;
+            else
+                $owner = True;
+
+
+            
+        }
+
+
 
         $query = $db->prepare("SELECT *, rowid FROM Restaurants WHERE rowid = '$id'");
         $query->execute();
@@ -78,9 +96,16 @@
         echo '<p> Type: ' .  $result['type'] . '</p>';
 
         $reviewLink = "../reviewRestaurant/reviewRestaurant.php?id=" . $id;
+        
 
-        echo '<a href="' . $reviewLink . '">Review this Restaurant </a>';
+        if(isset($_SESSION["user"])){
+            if(!($owner)){
+            echo '<a href="' . $reviewLink . '">Review this Restaurant </a>';
+            }
+        }
 
+
+        if($owner)
         echo '<div class="edit"><a href="#" onclick="changeEdit();"> Edit Restaurant </a></div>';
 
         echo '<div id="mapid">';
@@ -88,6 +113,7 @@
 
         echo '</div>';
 
+        if($owner){
         echo '<div id="editRestaurant">';
         echo '<p>Edit this restaurant: </p>';
 
@@ -114,10 +140,8 @@
 
 
         echo '</form>';
-
-
         echo '</div>';
-
+        }
 
         ?>
     </div>
@@ -125,7 +149,7 @@
     <div id="reviews">
         <?php
         include_once '../Database/Connect.php';
-        $query = $db->prepare("SELECT * FROM Reviews JOIN Restaurants ON (Restaurants.rowID = Reviews.restaurant)
+        $query = $db->prepare("SELECT *, Reviews.rowID FROM Reviews JOIN Restaurants ON (Restaurants.rowID = Reviews.restaurant)
                                                      JOIN Users ON (Users.rowID = Reviews.userID)
                                                      WHERE Restaurants.rowID = '$id'");
         $query->execute();
@@ -138,6 +162,17 @@
             echo '<h2>' . $row['title'] . '</h2>';
             echo '<p>' . $row['opinion'] . '</p>';
             echo '<p class="revClass">' . $row['classification'],"/5" . '</p>';
+            if($owner){
+
+            echo '
+                      <div id="replyReview">
+                        <form>
+                            <textarea name="replyText" maxlength="512" placeholder="Deixa um comentário..." required></textarea>
+                            <input type="hidden" name="usr" value="'.$row['rowid'].'"/>
+                            <input type="submit" name="Reply" value="Comentar">
+                        </form>
+                      </div>';
+            }
             echo '</div>';
             echo '<hr>';
         }
