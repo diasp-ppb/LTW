@@ -35,7 +35,8 @@
 
 #searchbar {
     display: inline-block;
-    transform: translateY(-5px);
+    position: relative;
+    top: -3px;
     width: 50%;
     min-width: 300px;
 }
@@ -51,6 +52,7 @@
     height: 27px;
     border-radius: 6px;
     border: 1px solid #4b8f29;
+    padding: 1% 4%;
 }
 
 .dropdown-content {
@@ -66,8 +68,9 @@
     cursor: pointer;
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 15px;
-    padding-bottom: 19px;
+    padding-top: 19px;
+    padding-bottom: 15px;
+    margin-top: -4px;
 }
 
 .topbar-login {
@@ -102,7 +105,6 @@
 
 .box {
     display: none;
-    position: fixed;
     position: fixed;
     width: 20%;
     min-width: 250px;
