@@ -61,39 +61,84 @@ window.onclick = function(event) {
 }
 
 $(document).ready(function() {
-    $('#register-form').submit(function() {
-        var user = $.trim($('#register-form input[name="user"]').val());
-        var pass = $.trim($('#register-form input[name="pass"]').val());
-        var confirm = $.trim($('#register-form input[name="confirm"]').val());
+    $('#register-form input[name="confirm"], #register-form input[name="pass"]').change(function() {
+        var pass = $('#register-form input[name="pass"]');
+        var passVal = $.trim(pass.val());
+        var confirm = $('#register-form input[name="confirm"]');
+        var confirmVal = $.trim(confirm.val());
 
-        if (user === '') {
-            alert('Please write a username.');
-            return false;
-        }
-
-        if (pass === '') {
-            alert('Please write a password.');
-            return false;
-        }
-
-        if (pass !== confirm) {
-            alert('Password does not match the confirmation field.');
-            return false;
+        if (passVal !== confirmVal) {
+            confirm[0].setCustomValidity('Password confirmation must match the password field.');
+        } else {
+            confirm[0].setCustomValidity('');
         }
     });
 
-    $('#login-form').submit(function() {
-        var user = $.trim($('#login-form input[name="user"]').val());
-        var pass = $.trim($('#login-form input[name="pass"]').val());
+    $('#register-form input[name="user"]').change(function() {
+        var user = $('#register-form input[name="user"]');
+        var exists;
+        $.ajax({
+            url: '../templates/existsUser.php',
+            type: 'post',
+            data: {
+                user: $.trim(user.val())
+            },
+            async: false,
+            success: function(data) {
+                exists = data;
+            }
+        });
 
-        if (user === '') {
-            alert('Please write a username.');
-            return false;
+        if (exists == 1) {
+            user[0].setCustomValidity('The desired username is already in use. Please select a different one.');
+        } else {
+            user[0].setCustomValidity('');
         }
+    });
 
-        if (pass === '') {
-            alert('Please write a password.');
-            return false;
+    $('#register-form input[name="email"]').change(function() {
+        var email = $('#register-form input[name="email"]');
+        var exists;
+        $.ajax({
+            url: '../templates/existsEmail.php',
+            type: 'post',
+            data: {
+                email: $.trim(email.val())
+            },
+            async: false,
+            success: function(data) {
+                exists = data;
+            }
+        });
+
+        if (exists == 1) {
+            email[0].setCustomValidity('The desired email is already in use. Please select a different one.');
+        } else {
+            email[0].setCustomValidity('');
+        }
+    });
+
+    $('#login-form input').change(function() {
+        var user = $('#login-form input[name="user"]');
+        var pass = $('#login-form input[name="pass"]');
+        var valid;
+        $.ajax({
+            url: '../login/validateLogin.php',
+            type: 'post',
+            data: {
+                user: $.trim(user.val()),
+                pass: $.trim(pass.val()),
+            },
+            async: false,
+            success: function(data) {
+                valid = data;
+            }
+        });
+
+        if (valid == 1) {
+            user[0].setCustomValidity('');
+        } else {
+            user[0].setCustomValidity('Username or password incorrect. Please try again.');
         }
     });
 });
