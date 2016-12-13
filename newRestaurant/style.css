@@ -8,114 +8,54 @@ body {
     min-width: 700px;
 }
 
-#topbar{
-    background:linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
-    /* background: #42ad3c;*/
-    height: 50px;
-    position: fixed;
-    width: 100%;
-    z-index: 15;
-    min-width: 750px;
-  	border:1px solid #4b8f29;
-    text-shadow:0px 1px 1px #5b8a3c;
-    box-shadow: 0px 6px 10px -7px #3e7327;
-    padding:6px 12px;
-}
-
-
-#topbar #topbar-login{
-    text-align: right;
-    font-size: 18px;
-
-    display: inline-block;
-    width: 10%;
-    min-width: 150px;
-
-
-}
-
-#topbar h1{
-    margin: 0 auto;
-    display: inline-block;
-    width:25%;
-    min-width: 200px;
-    margin-left: 5px;
-}
-
-
-#searchbar {
-    display: inline-block;
-    transform: translateY(-5px);
-    width:50%;
-    min-width: 300px;
-}
-
-#searchbar form{
-  width: 40%;
-  margin:auto;
-  min-width: 300px;
-}
-
-
-#searchbar input{
-    width: 300px;
-    height: 27px;
-    border-radius: 6px;
-    border:1px solid #4b8f29;
-}
-
-
 #FormNewRestaurant {
-      margin-top: 70px;
+    margin-top: 70px;
 }
 
-
-#FormNewRestaurant form{
+#FormNewRestaurant form {
     min-width: 400px;
 }
 
-#FormNewRestaurant form label{
-  margin-left: 40%;
-
+#FormNewRestaurant form label {
+    margin-left: 40%;
 }
 
-#FormNewRestaurant form input{
+#FormNewRestaurant form input {
     min-width: 300px;
     width: 300px;
     height: 27px;
     border-radius: 6px;
-    border:1px solid #4b8f29;
+    border: 1px solid #4b8f29;
     display: block;
     margin-left: 40%;
-    margin-top:10px;
+    margin-top: 10px;
     margin-bottom: 20px;
+    padding: 0.1% 0.6%;
 }
+
 #FormNewRestaurant form input:invalid {
-    border: 2px solid red;
+    border: 1px solid red;
 }
 
 #Intro img {
-      z-index: -10;
-      margin: auto;
-      width: 100%;
-      height: 1000px;
-      max-width: 2800px;
+    z-index: -10;
+    margin: auto;
+    width: 100%;
+    height: 1000px;
+    max-width: 2800px;
 }
 
 #Intro {
-
-  margin: auto;
+    margin: auto;
 }
 
-
-#Intro h1{
-  width: 1000px;
-color: white;
-margin-top: -360px;
-margin-left: 35%;
-position: absolute;
-font-size: 60px;
-font-family: 'Open Sans', sans-serif;
-text-shadow: 4px 2px 0px #414A58;
-
+#Intro h1 {
+    width: 1000px;
+    color: white;
+    margin-top: -360px;
+    margin-left: 35%;
+    position: absolute;
+    font-size: 60px;
+    font-family: 'Open Sans', sans-serif;
+    text-shadow: 4px 2px 0px #414A58;
 }
