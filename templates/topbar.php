@@ -34,7 +34,7 @@
                 </button>
 
                 <div id="topbar-dropdown" class="dropdown-content">
-                  <a href="#">My Profile</a>
+                  <a href="../userProfile/userProfile.php">My Profile</a>
                   <a href="../newRestaurant/newRestaurant.php">Create Restaurant</a>
                   <a href="../login/logout.php">Log Out</a>
                 </div>
