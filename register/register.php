@@ -10,7 +10,7 @@ if (isset($_POST["user"])) {
 
     include_once('../Database/Connect.php');
 
-    $stmt = $db->prepare("INSERT INTO Users VALUES ('".$user."','".$mdPass."','".$email."')");
+    $stmt = $db->prepare("INSERT INTO Users VALUES ('".$user."','".$mdPass."','".$email."', NULL)");
     $result = $stmt->execute();
 
     include_once('../login/login.php');

@@ -3,12 +3,14 @@ DROP TABLE IF EXISTS Restaurants;
 DROP TABLE IF EXISTS Reviews;
 DROP TABLE IF EXISTS Owners;
 DROP TABLE IF EXISTS Images;
+DROP TABLE IF EXISTS ReviewComments;
 DROP TRIGGER IF EXISTS UpdateAVGclass;
 
 CREATE TABLE Users (
     usr VARCHAR(32) NOT NULL,
     pass VARCHAR(32) NOT NULL ,
-    email VARCHAR(60) NOT NULL ,
+    email VARCHAR(64) NOT NULL ,
+    photo VARCHAR(64),
     UNIQUE(email),
     UNIQUE(usr)
 );

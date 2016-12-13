@@ -18,13 +18,19 @@
 
     $name = $result['usr'];
     $email = $result['email'];
+    $photo = $result['photo'];
+
 
 
     ?>
 
     <div id="content">
-    <img id="pic" src="../resources/default-user-image.png"/>
-
+    <?php
+        if($photo == NULL)
+        echo '<img id="pic" src="../resources/default-user-image.png"/>';
+        else
+        echo '<img id="pic" src="'. $photo .'"/>';
+    ?>
     <div id="information" >
       <form action="updateUser.php"  method="post" enctype="multipart/form-data">
       <div>
@@ -35,8 +41,15 @@
         <label> Email </label>
           <input type="text" name="address" value="<?php echo $email ?>"required />
       </div>
+
+
          <input type="submit" name="UpdateUser" value="Update">
 
+      </form>
+
+      <form action="updateUserPhoto.php" method="post" enctype="multipart/form-data">
+          <input type="file" name="fileToUpload" id="fileToUpload">
+          <input type="submit" name="UpdatePhoto" value="Update Profile Photo">
       </form>
     </div>
     </div>
