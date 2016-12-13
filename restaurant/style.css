@@ -94,9 +94,9 @@ body {
 
 #mapid {
     height: 250px;
-    width: 250px;
-    margin-left: 750px;
-    margin-top: -250px;
+    width: 1000px;
+    margin-top: 40px;
+    margin-bottom: 50px;
 }
 
 #mapid p{
@@ -149,11 +149,13 @@ body {
 }
 
 #replyReview p{
-    display: block;
+    display: inline-block;
+    margin-left: 40px;
 }
 
 #replyReview h3 {
-    display: block;
+    display: inline-block;
+    margin-bottom: 40px;
 }
 
 

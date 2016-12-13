@@ -122,7 +122,9 @@
         if($owner)
         echo '<div class="edit"><a href="#" onclick="changeEdit();"> Edit Restaurant </a></div>';
 
+
         echo '<div id="mapid">';
+        
         echo '<p id="restloc">' . $result['address'] . ', ' .  $result['city'] . ', ' . $result['country'] . '</p>';
 
         echo '</div>';
