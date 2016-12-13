@@ -79,16 +79,18 @@ body {
 
 .review  h2 {
     margin-left: 150px;
+    min-height: 31px;
 }
 
 .review p{
     margin-left: 150px;
+    min-height: 31px;
 }
 
 .revClass{
     float: right;
-    margin-right: 60px;
-    margin-top: -45px;
+    margin-right: 40px;
+    margin-top: -60px;
     font-size: 28px;
 }
 
