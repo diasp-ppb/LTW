@@ -7,7 +7,7 @@
     $image = $_FILES['fileToUpload']['name'];
     $image = "../resources/uploads/" . $image;
 
-    $update = $db->prepare("UPDATE Images SET name = '$image' WHERE restaurant = '$id';");
+    $update = $db->prepare("UPDATE Images SET name = '$image' WHERE restaurant = '$id' LIMIT 1;");
     $update->execute();
 
     $link =  "restaurant.php?id=" . $id;
