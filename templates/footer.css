@@ -1,0 +1,10 @@
+footer{
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+footer p {
+    align-self: center;
+}
