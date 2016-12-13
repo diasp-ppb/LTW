@@ -48,16 +48,30 @@
 
     foreach ($result as $row)
     {
-        $link = "../restaurant/restaurant.php?id=" . $row['rowid'];
+        $restid = $row['rowid'];
+        $link = "../restaurant/restaurant.php?id=" . $restid;
+
+        $imagequery = $db->prepare("SELECT * FROM Images WHERE restaurant = '$restid';");
+        try {
+        $imagequery->execute();
+        } catch (PDOException $e){
+        }
+
+        $image;
+        $images = $imagequery->fetchAll();
+        if(!isset($images[0]))
+            $image = "../resources/rex.jpg";
+        else
+            $image = $images[0]['name'];
 
         echo  '<div class="restaurant">';
 
-        echo '<img src="../resources/rex.jpg">';
+        echo '<img src="' . $image . '">';
 
         echo '<h1>' . '<a href=' . $link . '>' . $row['name'] . '</a>' . '</h1>';
 
         echo '<h2>' . $row['city'] , ", " , $row['district'], ", ", $row['country']  . '</h2>';
- 
+
         echo '<p>' .  $row['description'] . '</p>';
 
         echo '<div class="rrating">';
@@ -81,11 +95,11 @@
         else if($rounded <= 5)
         echo '<div class="rstars" style="margin-left: 875px;">';
 
-        
+
 
         for($i = 0; $i < $rounded ; $i++)
         echo '<img style="width:20px; height:18px;" src="../resources/star.png">';
-    
+
         echo '</div>';
 
 

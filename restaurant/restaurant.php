@@ -52,8 +52,8 @@
 
         if(isset($_SESSION["user"])){
 
-           
-            
+
+
             include_once("../Database/Connect.php");
 
             $queryUser = $_SESSION["user"];
@@ -64,15 +64,15 @@
 
             $isOwnerResult = $isOwner-> fetchAll();
 
- 
-            
+
+
             if(count($isOwnerResult) <= 0)
                 $owner = False;
             else
                 $owner = True;
 
 
-            
+
         }
 
 
@@ -83,7 +83,21 @@
 
         $result = $result[0];
 
-        echo '<img src="../resources/rex.jpg">';
+        $imagequery = $db->prepare("SELECT * FROM Images WHERE restaurant = '$id';");
+        try {
+        $imagequery->execute();
+        } catch (PDOException $e){
+        }
+
+        $image;
+        $images = $imagequery->fetchAll();
+        if(!isset($images[0]))
+            $image = "../resources/rex.jpg";
+        else
+            $image = $images[0]['name'];
+
+
+        echo '<img src="'. $image .'">';
 
         echo '<h1>' . $result['name'] . '</h1>';
 
@@ -96,7 +110,7 @@
         echo '<p> Type: ' .  $result['type'] . '</p>';
 
         $reviewLink = "../reviewRestaurant/reviewRestaurant.php?id=" . $id;
-        
+
 
         if(isset($_SESSION["user"])){
             if(!($owner)){

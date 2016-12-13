@@ -17,7 +17,7 @@
     <?php if(isset($_SESSION['user']))
     {
     ?>
-      <form action="newRestaurant.php"  method="post">
+      <form action="newRestaurant.php"  method="post" enctype="multipart/form-data">
 
         <?php
 
@@ -43,16 +43,16 @@
           <input type="text" name="type" value="'.$type.'" required>';
 
         ?>
+        <input type="file" name="fileToUpload" id="fileToUpload">
         <input type="submit" name="Regist" value="Submit">
 
       </form>
 
 
-      <form action="../templates/uploadImage.php" method="post" enctype="multipart/form-data">
+      <!--form action="../templates/uploadImage.php" method="post" enctype="multipart/form-data">
           <label>Select image to upload:</label>
-          <input type="file" name="fileToUpload" id="fileToUpload">
           <input type="submit" value="Upload Image" name="submit">
-      </form>
+      </form-->
 
       <?php
         } else {
@@ -71,6 +71,7 @@
         $type = $_POST['type'];
 
         include_once '../Database/Connect.php';
+        include_once '../templates/uploadImage.php';
 
         $query = $db->prepare("INSERT INTO Restaurants (name, address, type, city, district, country, avgClass)
                                VALUES ('$name','$address','$type','$city','$district','$country',NULL);");
@@ -108,6 +109,10 @@
                       <h2> Erro ao registar restaurante </h2>
                       </div>';
         }
+
+        $imageurl = "../resources/uploads/" . $_FILES['fileToUpload']['name'];
+        $insertimage = $db->prepare("INSERT INTO Images (restaurant, name) VALUES ('$num', '$imageurl');");
+        $insertimage->execute();
 
 }
 ?>
