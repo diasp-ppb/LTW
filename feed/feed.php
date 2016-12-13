@@ -35,12 +35,14 @@
 
     $stmt;
 
+    echo $rname;
+
     if($rname == '' && $local == '' && $search == '')
     $stmt = $db->prepare("SELECT *,rowid FROM Restaurants ORDER BY avgClass DESC");
     else if ($search != '')
-    $stmt = $db->prepare("SELECT *,rowid FROM Restaurants WHERE name = '$search' OR city = '$search' OR district = '$search' OR country = '$search' ORDER BY avgClass DESC");
+    $stmt = $db->prepare("SELECT *,rowid FROM Restaurants WHERE name LIKE '%$search%' OR city LIKE '%$search%' OR district LIKE '%$search%' OR country LIKE '%$search%' ORDER BY avgClass DESC");
     else
-    $stmt = $db->prepare("SELECT *,rowid FROM Restaurants WHERE name = '$rname' OR city = '$local' OR district = '$local' OR country = '$local' ORDER BY avgClass DESC");
+    $stmt = $db->prepare("SELECT *,rowid FROM Restaurants WHERE name LIKE '%$rname%' OR city LIKE '%$local%' OR district LIKE '%$local%' OR country LIKE '%$local%' ORDER BY avgClass DESC");
 
     $stmt->execute();
     $result = $stmt->fetchAll();
