@@ -39,7 +39,7 @@
       </div>
       <div>
         <label> Email </label>
-          <input type="text" name="address" value="<?php echo $email ?>"required />
+          <input type="text" name="email" value="<?php echo $email ?>"required />
       </div>
 
 
