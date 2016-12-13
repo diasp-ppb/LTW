@@ -2,9 +2,9 @@ footer{
     width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    
+    margin-top:60px;
 }
 
 footer p {
-    align-self: center;
+    text-align:  center;
 }
