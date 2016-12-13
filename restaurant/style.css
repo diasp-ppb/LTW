@@ -147,3 +147,13 @@ body {
 #replyReview form textarea {
     display: inline-block;
 }
+
+#replyReview p{
+    display: block;
+}
+
+#replyReview h3 {
+    display: block;
+}
+
+

@@ -176,17 +176,44 @@
             echo '<h2>' . $row['title'] . '</h2>';
             echo '<p>' . $row['opinion'] . '</p>';
             echo '<p class="revClass">' . $row['classification'],"/5" . '</p>';
-            if($owner){
+            
 
-            echo '
+                $reviewID = $row['rowid'];
+              
+
+                $reply = $db->prepare("SELECT *,rowID FROM ReviewComments WHERE review =  $reviewID ");
+
+                $reply->execute();
+
+                $replyResult = $reply->fetchAll();
+
+                if(count($replyResult) <= 0) {
+                //E SE NAO TI VER resposta
+                    if($owner){
+                      echo '
                       <div id="replyReview">
-                        <form>
+                        <form action="reply.php" method="post">
                             <textarea name="replyText" maxlength="512" placeholder="Deixa um comentário..." required></textarea>
-                            <input type="hidden" name="usr" value="'.$row['rowid'].'"/>
+                            <input type="hidden" name="review" value="'.$row['rowid'].'"/>
+                            <input type="hidden" name="ID" value="'.$id.'"/>
                             <input type="submit" name="Reply" value="Comentar">
                         </form>
                       </div>';
-            }
+                    }
+
+                }else{
+                    
+               //SE TIVER RESPOSTA
+
+               $opinion = $replyResult[0]['opinion'];
+               echo '<div id="replyReview">
+                    <h3> A gerencia </h3>
+                    <p>'.$opinion.'</p>
+                    </div>
+               ';
+
+                }                    
+            
             echo '</div>';
             echo '<hr>';
         }

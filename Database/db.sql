@@ -52,9 +52,8 @@ CREATE TABLE Images (
 
 CREATE TABLE ReviewComments (
     review INTEGER REFERENCES Reviews(rowID),
-    user INTEGER REFERENCES Users(rowID), 
-    data INTEGER NOT NULL,
-    PRIMARY KEY ( review, user , data )
+    opinion VARCHAR(512) NOT NULL,
+    PRIMARY KEY (review)
 );
 
 
