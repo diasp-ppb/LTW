@@ -109,10 +109,11 @@
                       <h2> Erro ao registar restaurante </h2>
                       </div>';
         }
-
+        if(uploadImage()){
         $imageurl = "../resources/uploads/" . $_FILES['fileToUpload']['name'];
         $insertimage = $db->prepare("INSERT INTO Images (restaurant, name) VALUES ('$num', '$imageurl');");
         $insertimage->execute();
+        }
 
 }
 ?>

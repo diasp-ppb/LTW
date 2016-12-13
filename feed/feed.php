@@ -11,8 +11,14 @@
             <div id="mainsearch"/>
             <form action="feed.php" method="get">
                 <?php
+                if(isset($_GET['rname'])){
                 $rname = $_GET['rname'];
                 $local = $_GET['local'];
+                }
+                else {
+                    $rname = '';
+                    $local = '';
+                }
 
                 echo '<input type="text" name="rname" placeholder="Restaurant" value="' . $rname . '">';
                 echo '<input type="text" name="local" placeholder="Location" value="' . $local . '">';
@@ -25,24 +31,36 @@
 
 <div id="restaurantslist">
     <?php
+    if(isset($_GET['rname'])){
     $rname = $_GET['rname'];
     $local = $_GET['local'];
-    $search = $_GET['search'];
-
+    }
+    else if (isset($_GET['search']))
+        $search = $_GET['search'];
+    else{
+        $rname = '';
+        $local = '';
+        $search = '';
+    }
     include_once('../Database/Connect.php');
 
 
 
     $stmt;
 
-    echo $rname;
-
     if($rname == '' && $local == '' && $search == '')
     $stmt = $db->prepare("SELECT *,rowid FROM Restaurants ORDER BY avgClass DESC");
     else if ($search != '')
     $stmt = $db->prepare("SELECT *,rowid FROM Restaurants WHERE name LIKE '%$search%' OR city LIKE '%$search%' OR district LIKE '%$search%' OR country LIKE '%$search%' ORDER BY avgClass DESC");
-    else
-    $stmt = $db->prepare("SELECT *,rowid FROM Restaurants WHERE name LIKE '%$rname%' OR city LIKE '%$local%' OR district LIKE '%$local%' OR country LIKE '%$local%' ORDER BY avgClass DESC");
+    else{
+        if($rname != '' && $ $local == '')
+            $stmt = $db->prepare("SELECT *,rowid FROM Restaurants WHERE name LIKE '%$rname%' ORDER BY avgClass DESC");
+        else if ($rname == '' && $local != ' ')
+            $stmt = $db->prepare("SELECT *,rowid FROM Restaurants WHERE city LIKE '%$local%' OR district LIKE '%$local%' OR country LIKE '%$local%' ORDER BY avgClass DESC");
+        else
+            $stmt = $db->prepare("SELECT *,rowid FROM Restaurants WHERE name LIKE '%$rname%' OR city LIKE '%$local%' OR district LIKE '%$local%' OR country LIKE '%$local%' ORDER BY avgClass DESC");
+    }
+//    $stmt = $db->prepare("SELECT *,rowid FROM Restaurants WHERE name LIKE '%$rname%' OR city LIKE '%$local%' OR district LIKE '%$local%' OR country LIKE '%$local%' ORDER BY avgClass DESC");
 
     $stmt->execute();
     $result = $stmt->fetchAll();
