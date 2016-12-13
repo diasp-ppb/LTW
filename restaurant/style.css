@@ -68,7 +68,7 @@ body {
 }
 
 .review{
-    height: 130px;
+    height: 150px;
 }
 .review p:first-child{
     margin-left: 00px;
@@ -139,11 +139,20 @@ body {
 }
 
 #replyReview form input{
-    display: inline-block;
+       display: inline-block;
+       width: 70px;
+       height: 69px;
+       transform: translate(-5px, -28px);
 }
 
 #replyReview form textarea {
+  
     display: inline-block;
+    width: 910px;
+    height: 60px;
+    margin-top: -10px;
+    
+
 }
 
 #replyReview p{
