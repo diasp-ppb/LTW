@@ -48,13 +48,12 @@
         $id = $_GET['id'];
 
 
-        $db = new PDO('sqlite:../Database/dataBase.db');
+        include_once("../Database/Connect.php");
 
         if(isset($_SESSION["user"])){
 
 
 
-            include_once("../Database/Connect.php");
 
             $queryUser = $_SESSION["user"];
 
@@ -96,6 +95,8 @@
         else
             $image = $images[0]['name'];
 
+        $rating = $result['avgClass'];
+        $rating = round($rating, 1);
 
         echo '<img src="'. $image .'">';
 
@@ -105,7 +106,7 @@
 
         echo '<h2>' . $result['city'] , ", " , $result['district'], ", ", $result['country']  . '</h2>';
 
-        echo '<div class="avgClass"> <h2>' . $result['avgClass'], "/5" .  '</h2> </div>';
+        echo '<div class="avgClass"> <h2>' . $rating, "/5" .  '</h2> </div>';
 
         echo '<p> Type: ' .  $result['type'] . '</p>';
 

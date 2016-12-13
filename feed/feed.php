@@ -84,6 +84,9 @@
         else
             $image = $images[0]['name'];
 
+        $rating = $row['avgClass'];
+        $rating = round($rating, 1);
+
         echo  '<div class="restaurant">';
 
         echo '<img src="' . $image . '">';
@@ -95,8 +98,8 @@
         echo '<p>' .  $row['description'] . '</p>';
 
         echo '<div class="rrating">';
-        if($row['avgClass'] != NULL)
-        echo '<p>' . $row['avgClass'], "/5" . '</p>';
+        if($rating != NULL)
+        echo '<p>' . $rating, "/5" . '</p>';
         else
         echo '<p>  Nan </p>';
 

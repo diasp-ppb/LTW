@@ -72,6 +72,7 @@
 
         include_once '../Database/Connect.php';
         include_once '../templates/uploadImage.php';
+        include_once '../templates/getUserID.php';
 
         $query = $db->prepare("INSERT INTO Restaurants (name, address, type, city, district, country, avgClass)
                                VALUES ('$name','$address','$type','$city','$district','$country',NULL);");
@@ -91,13 +92,9 @@
         $id = $id[0];
         $num = $id['rowid'];
 
-        $username = $_SESSION["user"];
-        $getuserid = $db->prepare("SELECT rowid FROM Users WHERE usr = '$username';");
-        $getuserid->execute();
-        $use = $getuserid->fetchAll();
-        $userid = $use[0];
-        $usernum = $userid['rowid'];
 
+        $usernum = getUserID();
+        
         $insertowner = $db->prepare("INSERT INTO Owners (owner, restaurant) VALUES('$usernum', '$num');");
         try {
             $insertowner->execute();

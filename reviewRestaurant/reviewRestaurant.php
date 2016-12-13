@@ -24,7 +24,7 @@
         $id = $_GET['id'];
 
 
-        $db = new PDO('sqlite:../Database/dataBase.db');
+        include_once("../Database/Connect.php");
 
         $query = $db->prepare("SELECT *, rowid FROM Restaurants WHERE rowid = '$id'");
         $query->execute();
@@ -85,17 +85,20 @@
         $classification = $_GET['classification'];
 
         include_once '../Database/Connect.php';
+        include_once '../templates/getUserID.php';
+
+        $userid =  getUserID();
 
         $insert = $db->prepare("INSERT INTO Reviews (userID, restaurant, title, opinion, classification)
-        VALUES (1,'$id','$title','$comment','$classification');"); //TODO - change userID
+        VALUES ('$userid','$id','$title','$comment','$classification');");
 
 
         try {
             $insert->execute();
-            header('Location: thankyou.php');
         } catch (PDOException $e) {
             echo 'Fail inserting review!';
         }
+
     }
     ?>
 
