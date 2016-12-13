@@ -116,15 +116,14 @@
             if(!($owner)){
             echo '<a href="' . $reviewLink . '">Review this Restaurant </a>';
             }
+            else
+            echo '<a href="#" onclick="changeEdit();"> Edit Restaurant </a>';
+
         }
 
 
-        if($owner)
-        echo '<div class="edit"><a href="#" onclick="changeEdit();"> Edit Restaurant </a></div>';
-
-
         echo '<div id="mapid">';
-        
+
         echo '<p id="restloc">' . $result['address'] . ', ' .  $result['city'] . ', ' . $result['country'] . '</p>';
 
         echo '</div>';
@@ -156,10 +155,25 @@
 
 
         echo '</form>';
-        echo '</div>';
         }
 
         ?>
+
+
+        <?php
+            if($owner)
+            {
+                echo '<form action="editPhoto.php" method="post" enctype="multipart/form-data">';
+                echo '<input style="display:none;" type="text" name="id" value=" '. $id . '">';
+                echo '<input type="file" name="fileToUpload" id="fileToUpload">';
+                echo '<input type="submit" name="EditPhoto" value="editPhoto">';
+                echo '</form>';
+
+                echo '</div>';
+            }
+        ?>
+
+
     </div>
 
     <div id="reviews">
@@ -178,10 +192,10 @@
             echo '<h2>' . $row['title'] . '</h2>';
             echo '<p>' . $row['opinion'] . '</p>';
             echo '<p class="revClass">' . $row['classification'],"/5" . '</p>';
-            
+
 
                 $reviewID = $row['rowid'];
-              
+
 
                 $reply = $db->prepare("SELECT *,rowID FROM ReviewComments WHERE review =  $reviewID ");
 
@@ -190,7 +204,7 @@
                 $replyResult = $reply->fetchAll();
 
                 if(count($replyResult) <= 0) {
-                //E SE NAO TI VER resposta
+                //E SE NAO TIVER resposta
                     if($owner){
                       echo '
                       <div id="replyReview">
@@ -204,7 +218,7 @@
                     }
 
                 }else{
-                    
+
                //SE TIVER RESPOSTA
 
                $opinion = $replyResult[0]['opinion'];
@@ -214,8 +228,8 @@
                     </div>
                ';
 
-                }                    
-            
+                }
+
             echo '</div>';
             echo '<hr>';
         }
