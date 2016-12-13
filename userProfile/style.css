@@ -55,3 +55,13 @@
  margin-top: 20px;
 }
 
+
+body {
+    font-size: 18px;
+    font-family: Tahoma, Verdana, sans-serif;
+    color: #404040;
+    background: #f9f9f9;
+    margin: auto;
+    overflow-x: hidden;
+    min-width: 700px;
+}
