@@ -3,34 +3,35 @@
 
  include_once('../Database/Connect.php');
 
- $name = $_POST['name'];
+ $name = $_POST['user'];
  $restaurant= $_POST['restaurant'];
- $classification = $_POST['classification'];
+ $classification = $_POST['class'];
 
- $search = $db->prepare('SELECT * FROM Reviews
+ $search = $db->prepare("SELECT * FROM Reviews
     JOIN Restaurants ON restaurant = Restaurants.rowid
     JOIN Users ON Users.rowid = Reviews.userID
-    WHERE Users.usr = "'.$name.'"
-    AND
-    WHERE Restaurants.name ="'.$restaurant.'"
-    AND Reviews.classification="'.$classification.'"
-    ');
+    WHERE Users.usr = '$name' AND
+    Restaurants.name = '$restaurant'
+    AND Reviews.classification='$classification'");
 
 
 $search->execute();
 
 $result = $search->fetchAll();
 
-
+echo count($result);
 $result = $result[0];
 
 
 $uID= $result['userID'];
 $restID = $result['restaurant'];
 
-$delete = $db->prepare('DELETE FROM REVIEWS WHERE userID ='.$userID.'
-                            AND restaurant = '.$restID.'
-                            AND classification ='.$classification.'');
+echo $uID;
+echo $restID;
+$delete = $db->prepare("DELETE FROM REVIEWS WHERE userID ='$uID'
+                            AND restaurant = '$restID'
+                            AND classification ='$classification'");
+$delete->execute();
 
 
 ?>
