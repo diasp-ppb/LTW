@@ -1,0 +1,86 @@
+body{
+    background:	#88CC88;
+
+}
+
+#statistics{
+    margin-bottom:80px; 
+}
+
+
+
+#stat_table {
+  border-radius:3px;
+  height: 320px;
+  margin: auto;
+  max-width: 1000px;
+  padding:5px;
+  width: 100%;
+  
+  
+}
+
+
+th {
+  color:#D5DDE5;
+  background:#116611;
+  border-bottom:4px solid #9ea7af;
+  border-right: 1px solid #116611;
+  font-size:23px;
+  padding:24px;
+  text-align:left;
+  vertical-align:middle;
+  border-radius: 20px;
+}
+
+
+  tr {
+    border-top: 1px solid #C1C3D1;
+    border-bottom-: 1px solid #C1C3D1;
+    color:#666B85;
+    font-size:16px;
+    font-weight:normal;
+    
+  }
+
+ 
+td {
+  background:#A5C663;
+  padding:20px;
+  text-align:left;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:18px;
+  border-right: 1px solid #C1C3D1;
+  text-align: center;
+  border-bottom: 1px solid #C1C3D1;
+  border-radius: 20px;
+   color:#000000;
+}
+
+td:hover {
+  background:#0D4D4D;
+  color:#FFFFFF;
+  animation: 5s infinite;
+}
+
+
+
+form{
+  background:#2D8822;
+  padding:20px;
+  text-align:left;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:18px;
+  text-align: center;
+  border-radius: 20px;
+  margin-bottom: 30px;
+   color:#D5DDE5;
+}
+
+
+form input[type=submit]{
+    border-radius: 10px;
+    font-size:15px;
+}
