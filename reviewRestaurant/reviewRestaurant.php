@@ -1,31 +1,27 @@
 <!DOCTYPE html>
 <html>
 
+<?php
+    include_once('../templates/header.php');
+    include_once('../templates/topbar.php');
+?>
+
 <head>
     <title>Já Comia - Review Restaurant</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <?php
-    include_once('../templates/header.php');
-    ?>
 
 </head>
 
-
 <body>
-
-    <?php
-    include_once('../templates/topbar.php');
-    ?>
-
     <div id="main">
         <?php
-        if(!isset($_GET['id']))
-        header('Location:  ../feed/feed.php');
-        else
-        $id = $_GET['id'];
-
+        if (!isset($_GET['id'])) {
+            header('Location:  ../feed/feed.php');
+        } else {
+            $id = $_GET['id'];
+        }
 
         include_once("../Database/Connect.php");
 
@@ -33,31 +29,28 @@
         $query->execute();
         $result = $query->fetchAll();
 
+        if (count($result) != 1) {
+            header('Location: ../feed/feed.php');
+        }
+
         $result = $result[0];
 
         echo '<img src="../resources/rex.jpg">';
-
-        echo '<h1>' . $result['name'] . '</h1>';
-
-        echo '<h2>' . $result['city'] , ", " , $result['district'], ", ", $result['country']  . '</h2>';
-
-        echo '<div class="avgClass"> <h2>' . $result['avgClass'], "/5" .  '</h2> </div>';
-
-        echo '<p> Type: ' .  $result['type'] . '</p>';
-
+        echo '<h1>'.$result['name'].'</h1>';
+        echo '<h2>'.$result['city'].", ".$result['district'].", ".$result['country'].'</h2>';
+        echo '<div class="avgClass"> <h2>'.$result['avgClass']."/5".'</h2> </div>';
+        echo '<p> Type: '.$result['type'].'</p>';
         ?>
     </div>
 
-
     <div id="review">
-        <form action="reviewRestaurant.php" method="get">
+        <form action="submitReview.php" method="POST">
             <?php
             $id = $_GET['id'];
-            echo '<input type="text" id="restID" name="id" value="' . $id . '"  >';
+            echo '<input type="text" id="restID" name="id" value="'.$id.'"  >';
             ?>
             <input type="text" name="title" placeholder="Title (optional)" autocomplete="off" maxlength="64"/>
             <textarea name="comment" maxlength="1024" placeholder="Comment (optional)"></textarea>
-            <!--input type="range" name="classification" min="1" max="5"-->
             <span class="rating"> <!-- from: https://www.everythingfrontend.com/posts/star-rating-input-pure-css.html !-->
                 <input type="radio" class="rating-input"
                     id="rating-input5" name="classification" value="5" required>
@@ -79,30 +72,4 @@
         </form>
 
     </div>
-
-    <?php
-    if(isset($_GET['Submit'])){
-        $id = $_GET['id'];
-        $title = $_GET['title'];
-        $comment = $_GET['comment'];
-        $classification = $_GET['classification'];
-
-        include_once '../Database/Connect.php';
-        include_once '../templates/getUserID.php';
-
-        $userid =  getUserID();
-
-        $insert = $db->prepare("INSERT INTO Reviews (userID, restaurant, title, opinion, classification)
-        VALUES ('$userid','$id','$title','$comment','$classification');");
-
-
-        try {
-            $insert->execute();
-        } catch (PDOException $e) {
-            echo 'Fail inserting review!';
-        }
-
-    }
-    ?>
-
 </body>
