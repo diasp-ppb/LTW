@@ -18,7 +18,10 @@
 
 
     include_once("../Database/Connect.php");
+    session_start();
+    $user = $_SESSION['user'];
 
+    if($user == "admin"){
 
     //COUNT USERS
     $query = $db->prepare('SELECT COUNT(*) FROM Users');
@@ -192,4 +195,8 @@
 
 </body>
 
-<?php include_once('../templates/footer.php') ?>
+<?php }
+    else {
+        echo '<h1>Need admin to access this page!</h1>';
+    }
+include_once('../templates/footer.php') ?>

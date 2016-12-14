@@ -111,17 +111,17 @@ $(document).ready(function() {
             }
         });
 
-        if (array.size != 0) {
-            email[0].setCustomValidity('The desired email is already in use. Please select a different one.');
-        } else {
+        if (array.size == 0) {
             email[0].setCustomValidity('');
+        } else {
+            email[0].setCustomValidity('The desired email is already in use. Please select a different one.');
         }
     });
 
     $('#login-form input').change(function() {
         var user = $('#login-form input[name="user"]');
         var pass = $('#login-form input[name="pass"]');
-        var valid;
+        var array;
         $.ajax({
             url: '../login/validateLogin.php',
             type: 'post',
@@ -131,14 +131,14 @@ $(document).ready(function() {
             },
             async: false,
             success: function(data) {
-                valid = data;
+                array = data;
             }
         });
 
-        if (valid == 1) {
-            user[0].setCustomValidity('');
-        } else {
+        if (array.size == 0) {
             user[0].setCustomValidity('Username or password incorrect. Please try again.');
+        } else {
+            user[0].setCustomValidity('');
         }
     });
 });

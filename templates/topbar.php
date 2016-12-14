@@ -36,6 +36,10 @@
                 <div id="topbar-dropdown" class="dropdown-content">
                   <a href="../userProfile/userProfile.php">My Profile</a>
                   <a href="../newRestaurant/newRestaurant.php">Create Restaurant</a>
+                  <?php
+                    if($_SESSION["user"] == "admin")
+                        echo '<a href="../admin/admin.php">Admin Page </a>';
+                  ?>
                   <a href="../login/logout.php">Log Out</a>
                 </div>
             </div>
