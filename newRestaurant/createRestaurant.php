@@ -37,4 +37,6 @@
          $insertimage = $db->prepare("INSERT INTO Images (restaurant, name) VALUES ('$num', '$imageurl');");
          $insertimage->execute();
      }
+
+     header('Location: ../feed/feed.php');
  }

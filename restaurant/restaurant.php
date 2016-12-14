@@ -187,7 +187,7 @@
                 <label> Tipo </label>
                 <input type="text" name="type" value="'.$result['type'].'" required>
                 <label> Descrição </label>
-                <textarea name="description" maxlength="1024" required>'. $result['description'] . '</textarea>
+                <textarea name="description" maxlength="1024" >'. $result['description'] . '</textarea>
 
                 <input type="submit" name="Edit" value="Submit">
                 ';
