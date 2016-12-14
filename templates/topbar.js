@@ -76,7 +76,7 @@ $(document).ready(function() {
 
     $('#register-form input[name="user"]').change(function() {
         var user = $('#register-form input[name="user"]');
-        var exists;
+        var array;
         $.ajax({
             url: '../templates/existsUser.php',
             type: 'post',
@@ -85,11 +85,11 @@ $(document).ready(function() {
             },
             async: false,
             success: function(data) {
-                exists = data;
+                array = data;
             }
         });
 
-        if (exists == 1) {
+        if (array.size != 0) {
             user[0].setCustomValidity('The desired username is already in use. Please select a different one.');
         } else {
             user[0].setCustomValidity('');
@@ -98,7 +98,7 @@ $(document).ready(function() {
 
     $('#register-form input[name="email"]').change(function() {
         var email = $('#register-form input[name="email"]');
-        var exists;
+        var array;
         $.ajax({
             url: '../templates/existsEmail.php',
             type: 'post',
@@ -107,11 +107,11 @@ $(document).ready(function() {
             },
             async: false,
             success: function(data) {
-                exists = data;
+                array = data;;
             }
         });
 
-        if (exists == 1) {
+        if (array.size != 0) {
             email[0].setCustomValidity('The desired email is already in use. Please select a different one.');
         } else {
             email[0].setCustomValidity('');

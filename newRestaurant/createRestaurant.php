@@ -1,11 +1,11 @@
 <?php
  if (isset($_POST['submit'])) {
-     $name = $_POST['name'];
-     $address = $_POST['address'];
-     $city = $_POST['city'];
-     $district = $_POST['district'];
-     $country = $_POST['country'];
-     $type = $_POST['type'];
+     $name = htmlentities($_POST['name']);
+     $address = htmlentities($_POST['address']);
+     $city = htmlentities($_POST['city']);
+     $district = htmlentities($_POST['district']);
+     $country = htmlentities($_POST['country']);
+     $type = htmlentities($_POST['type']);
 
      include_once '../Database/Connect.php';
      include_once '../templates/uploadImage.php';

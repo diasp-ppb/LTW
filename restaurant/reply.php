@@ -4,9 +4,9 @@
 
 
     try {
-       
-        echo 'INSERT INTO ReviewComments (review,opinion) VALUES ('.$_POST['review'].','.$_POST['replyText'].' )';
-        $query = $db->prepare('INSERT INTO ReviewComments (review,opinion) VALUES ('.$_POST['review'].',"'.$_POST['replyText'].'" )');
+
+        echo 'INSERT INTO ReviewComments (review,opinion) VALUES ('.htmlentities($_POST['review']).','.htmlentities($_POST['replyText']).' )';
+        $query = $db->prepare('INSERT INTO ReviewComments (review,opinion) VALUES ('.htmlentities($_POST['review']).',"'.htmlentities($_POST['replyText']).'" )');
         $query->execute();
     }
     catch(PDOException $Exception)
@@ -14,6 +14,6 @@
         echo $Exception;
     }
 
-    header('Location: ./restaurant.php?id='.$_POST['ID']);
+    header('Location: ./restaurant.php?id='.htmlentities($_POST['ID']));
 
 ?>

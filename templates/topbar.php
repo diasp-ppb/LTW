@@ -16,7 +16,7 @@
 
             <div id="searchbar">
                 <form action="../feed/feed.php" method="get">
-                    <input type="text" name="search" placeholder="Search">
+                    <input type="text" name="search" pattern="[a-zA-Z0-9\s]+" title="Insert letters, numbers and spaces only." placeholder="Search">
                 </form>
             </div>
 

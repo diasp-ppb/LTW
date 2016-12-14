@@ -2,9 +2,9 @@
 $db = new PDO('sqlite:../Database/dataBase.db');
 
 if (isset($_POST["user"])) {
-    $user = str_replace(" ", "", $_POST["user"]);
-    $pass = str_replace(" ", "", $_POST["pass"]);
-    $email = str_replace(" ", "", $_POST["email"]);
+    $user = str_replace(" ", "", htmlentities($_POST["user"]));
+    $pass = str_replace(" ", "", htmlentities($_POST["pass"]));
+    $email = str_replace(" ", "", htmlentities($_POST["email"]));
 
     $mdPass = md5($pass);
 

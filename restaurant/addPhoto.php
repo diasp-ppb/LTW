@@ -2,7 +2,7 @@
 include_once("../Database/Connect.php");
 include_once("../templates/uploadImage.php");
 
-$id = $_POST['id'];
+$id = htmlentities($_POST['id']);
 if(uploadImage()){
     $image = $_FILES['fileToUpload']['name'];
     $image = "../resources/uploads/" . $image;

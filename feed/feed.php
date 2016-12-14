@@ -23,8 +23,8 @@
                     $local = '';
                 }
 
-                echo '<input type="text" name="rname" placeholder="Restaurant" value="' . $rname . '">';
-                echo '<input type="text" name="local" placeholder="Location" value="' . $local . '">';
+                echo '<input type="text" name="rname" placeholder="Restaurant" pattern="[a-zA-Z0-9\s]+" title="Insert letters, numbers and spaces only." value="' . $rname . '">';
+                echo '<input type="text" name="local" placeholder="Location" pattern="[a-zA-Z0-9\s]+" title="Insert letters, numbers and spaces only." value="' . $local . '">';
                 ?>
                 <input type="submit" value="">
             </form>

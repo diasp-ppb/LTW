@@ -1,5 +1,4 @@
 <?php
-
 function getUserID(){
     include '../Database/Connect.php';
     session_start();
@@ -11,7 +10,5 @@ function getUserID(){
     $usernum = $userid['rowid'];
 
     return $usernum;
-
 }
-
 ?>

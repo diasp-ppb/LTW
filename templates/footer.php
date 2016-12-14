@@ -1,4 +1,3 @@
-
 <footer>
     <hr>
     <p> FEUP - MIEIC - LTW 2016/2017 </p>
