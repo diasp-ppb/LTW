@@ -23,6 +23,9 @@
 #topbar a {
     color: currentColor;
     text-decoration: none;
+    position: relative;
+    top: 5px;
+    left: 80px;
 }
 
 #topbar h1 {
