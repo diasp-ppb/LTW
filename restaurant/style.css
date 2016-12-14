@@ -18,9 +18,11 @@ body {
     margin-top: 70px;
 }
 
-#main img{
-    width: 350px;
-    margin-top: 20px;
+.galleria{
+    width: 400px;
+    height: 300px;
+    background: #000;
+    display: inline-block;
 }
 
 #main h1{
@@ -68,7 +70,7 @@ body {
 }
 
 .review{
-    height: 150px;
+    height: 130px;
 }
 .review p:first-child{
     margin-left: 00px;
@@ -139,20 +141,11 @@ body {
 }
 
 #replyReview form input{
-       display: inline-block;
-       width: 70px;
-       height: 69px;
-       transform: translate(-5px, -28px);
+    display: inline-block;
 }
 
 #replyReview form textarea {
-  
     display: inline-block;
-    width: 910px;
-    height: 60px;
-    margin-top: -10px;
-    
-
 }
 
 #replyReview p{
@@ -163,4 +156,13 @@ body {
 #replyReview h3 {
     display: inline-block;
     margin-bottom: 40px;
+}
+
+#addForm{
+    display: inline;
+    margin-left: 30px;
+}
+
+#addForm input[type="submit"]{
+    display: none;
 }

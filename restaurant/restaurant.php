@@ -32,137 +32,170 @@
     </script>
     <script src="restaurant.js"></script>
 
-</head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.1/galleria.min.js"></script>
+
+    <script>
+    $(document).ready(
+        function(){
+            $('#fileToUpload').change(
+                function(){
+                    if ($(this).val()) {
+                        $('#submitPhoto').css("display", "inline");
+                    }
+                }
+            );
+        });
+
+        </script>
+    </head>
 
 
-<body>
+    <body>
 
-    <?php
-    include_once('../templates/topbar.php');
-    ?>
-
-    <div id="main">
         <?php
-        if(!isset($_GET['id']))
-        header('Location:  ../feed/feed.php');
-        else
-        $id = $_GET['id'];
-
-
-        include_once("../Database/Connect.php");
-
-        if(isset($_SESSION["user"])){
-
-
-
-
-            $queryUser = $_SESSION["user"];
-
-
-            $isOwner = $db->prepare("SELECT * FROM Owners  JOIN Restaurants ON Owners.restaurant = Restaurants.rowID JOIN Users ON Users.rowID = Owners.owner WHERE Users.usr = '$queryUser' AND Restaurants.rowID = '$id'");
-            $isOwner->execute();
-
-            $isOwnerResult = $isOwner-> fetchAll();
-
-
-
-            if(count($isOwnerResult) <= 0)
-                $owner = False;
+        include_once('../templates/topbar.php');
+        ?>
+        <div id="main">
+            <?php
+            if(!isset($_GET['id']))
+            header('Location:  ../feed/feed.php');
             else
+            $id = $_GET['id'];
+
+
+            include_once("../Database/Connect.php");
+
+            if(isset($_SESSION["user"])){
+
+
+
+
+                $queryUser = $_SESSION["user"];
+
+
+                $isOwner = $db->prepare("SELECT * FROM Owners  JOIN Restaurants ON Owners.restaurant = Restaurants.rowID JOIN Users ON Users.rowID = Owners.owner WHERE Users.usr = '$queryUser' AND Restaurants.rowID = '$id'");
+                $isOwner->execute();
+
+                $isOwnerResult = $isOwner-> fetchAll();
+
+
+
+                if(count($isOwnerResult) <= 0)
+                $owner = False;
+                else
                 $owner = True;
 
 
 
-        }
+            }
 
 
 
-        $query = $db->prepare("SELECT *, rowid FROM Restaurants WHERE rowid = '$id'");
-        $query->execute();
-        $result = $query->fetchAll();
+            $query = $db->prepare("SELECT *, rowid FROM Restaurants WHERE rowid = '$id'");
+            $query->execute();
+            $result = $query->fetchAll();
 
-        $result = $result[0];
+            $result = $result[0];
 
-        $imagequery = $db->prepare("SELECT * FROM Images WHERE restaurant = '$id';");
-        try {
-        $imagequery->execute();
-        } catch (PDOException $e){
-        }
+            $imagequery = $db->prepare("SELECT * FROM Images WHERE restaurant = '$id';");
+            try {
+                $imagequery->execute();
+            } catch (PDOException $e){
+            }
 
-        $image;
-        $images = $imagequery->fetchAll();
-        if(!isset($images[0]))
+            $rating = $result['avgClass'];
+            $rating = round($rating, 1);
+
+            $image;
+            $images = $imagequery->fetchAll();
+            if(!isset($images[0]))
             $image = "../resources/rex.jpg";
-        else
+            else
             $image = $images[0]['name'];
 
-        $rating = $result['avgClass'];
-        $rating = round($rating, 1);
-
-        echo '<img src="'. $image .'">';
-
-        echo '<h1>' . $result['name'] . '</h1>';
-
-        echo '<h2>' . $result['address'] . '</h2>';
-
-        echo '<h2>' . $result['city'] , ", " , $result['district'], ", ", $result['country']  . '</h2>';
-
-        echo '<div class="avgClass"> <h2>' . $rating, "/5" .  '</h2> </div>';
-
-        echo '<p> Type: ' .  $result['type'] . '</p>';
-
-        $reviewLink = "../reviewRestaurant/reviewRestaurant.php?id=" . $id;
-
-
-        if(isset($_SESSION["user"])){
-            if(!($owner)){
-            echo '<a href="' . $reviewLink . '">Review this Restaurant </a>';
+            //echo '<img src="'. $image .'">';
+            echo '<div class="galleria">';
+            if(count($images) == 0)
+                echo '<img src="' . $image . '">';
+            else{
+                foreach($images as $row)
+                    echo '<img src="' . $row['name'] . '">';
             }
-            else
-            echo '<a href="#" onclick="changeEdit();"> Edit Restaurant </a>';
+            /*f
+            <img src="'. $image . '">*/
+            echo '</div>';
 
-        }
+            echo '<h1>' . $result['name'] . '</h1>';
 
+            echo '<h2>' . $result['address'] . '</h2>';
 
-        echo '<div id="mapid">';
+            echo '<h2>' . $result['city'] , ", " , $result['district'], ", ", $result['country']  . '</h2>';
 
-        echo '<p id="restloc">' . $result['address'] . ', ' .  $result['city'] . ', ' . $result['country'] . '</p>';
+            echo '<div class="avgClass"> <h2>' . $rating, "/5" .  '</h2> </div>';
 
-        echo '</div>';
+            echo '<p> Type: ' .  $result['type'] . '</p>';
 
-        if($owner){
-        echo '<div id="editRestaurant">';
-        echo '<p>Edit this restaurant: </p>';
-
-        echo '<form action="restaurant.php"  method="post">';
-        echo '
-        <input type="text" name="id" value=" '. $id . '">
-        <label> Nome </label>
-          <input type="text" name="name" value="'.$result['name'].'"required >
-        <label> Rua </label>
-          <input type="text" name="address" value="'.$result['address'].'"required>
-        <label> Cidade </label>
-          <input type="text" name="city" value="'.$result['city'].'"required>
-        <label> Distrito </label>
-          <input type="text" name="district" value="'.$result['district'].'"required>
-        <label> País </label>
-          <input type="text" name="country" value="'.$result['country'].'"required>
-        <label> Tipo </label>
-          <input type="text" name="type" value="'.$result['type'].'" required>
-         <label> Descrição </label>
-          <textarea name="description" maxlength="1024" required>'. $result['description'] . '</textarea>
-
-        <input type="submit" name="Edit" value="Submit">
-        ';
+            $reviewLink = "../reviewRestaurant/reviewRestaurant.php?id=" . $id;
 
 
-        echo '</form>';
-        }
+            if(isset($_SESSION["user"])){
+                if(!($owner)){
+                    echo '<a href="' . $reviewLink . '">Review this Restaurant </a>';
+                }
+                else
+                    echo '<a href="#" onclick="changeEdit();"> Edit Restaurant </a>';
+                ?>
+                <form id="addForm" action="addPhoto.php" method="post" enctype="multipart/form-data">
+                    <?php
+                        echo '<input style="display:none;" type="text" name="id" value="' . $id . '">';
+                    ?>
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <input type="submit" name="AddPhoto" value="Add Photo" id="submitPhoto">
+                </form>
+                <?php
+            }
 
-        ?>
+
+            echo '<div id="mapid">';
+
+            echo '<p id="restloc">' . $result['address'] . ', ' .  $result['city'] . ', ' . $result['country'] . '</p>';
+
+            echo '</div>';
+
+            if($owner){
+                echo '<div id="editRestaurant">';
+                echo '<p>Edit this restaurant: </p>';
+
+                echo '<form action="restaurant.php"  method="post">';
+                echo '
+                <input type="text" name="id" value=" '. $id . '">
+                <label> Nome </label>
+                <input type="text" name="name" value="'.$result['name'].'"required >
+                <label> Rua </label>
+                <input type="text" name="address" value="'.$result['address'].'"required>
+                <label> Cidade </label>
+                <input type="text" name="city" value="'.$result['city'].'"required>
+                <label> Distrito </label>
+                <input type="text" name="district" value="'.$result['district'].'"required>
+                <label> País </label>
+                <input type="text" name="country" value="'.$result['country'].'"required>
+                <label> Tipo </label>
+                <input type="text" name="type" value="'.$result['type'].'" required>
+                <label> Descrição </label>
+                <textarea name="description" maxlength="1024" required>'. $result['description'] . '</textarea>
+
+                <input type="submit" name="Edit" value="Submit">
+                ';
 
 
-        <?php
+                echo '</form>';
+            }
+
+            ?>
+
+
+            <?php
             if($owner)
             {
                 echo '<form action="editPhoto.php" method="post" enctype="multipart/form-data">';
@@ -173,27 +206,32 @@
 
                 echo '</div>';
             }
-        ?>
+            ?>
+            <script>
+            (function() {
+                Galleria.loadTheme('https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.1/themes/classic/galleria.classic.min.js');
+                Galleria.run('.galleria');
+            }());
+            </script>
+
+        </div>
+
+        <div id="reviews">
+            <?php
+            include_once '../Database/Connect.php';
+            $query = $db->prepare("SELECT *, Reviews.rowID FROM Reviews JOIN Restaurants ON (Restaurants.rowID = Reviews.restaurant)
+            JOIN Users ON (Users.rowID = Reviews.userID)
+            WHERE Restaurants.rowID = '$id'");
+            $query->execute();
+            $result = $query->fetchAll();
 
 
-    </div>
-
-    <div id="reviews">
-        <?php
-        include_once '../Database/Connect.php';
-        $query = $db->prepare("SELECT *, Reviews.rowID FROM Reviews JOIN Restaurants ON (Restaurants.rowID = Reviews.restaurant)
-                                                     JOIN Users ON (Users.rowID = Reviews.userID)
-                                                     WHERE Restaurants.rowID = '$id'");
-        $query->execute();
-        $result = $query->fetchAll();
-
-
-        foreach ($result as $row) {
-            echo '<div class="review">';
-            echo '<p>' . $row['usr'] . '</p>';
-            echo '<h2>' . $row['title'] . '</h2>';
-            echo '<p>' . $row['opinion'] . '</p>';
-            echo '<p class="revClass">' . $row['classification'],"/5" . '</p>';
+            foreach ($result as $row) {
+                echo '<div class="review">';
+                echo '<p>' . $row['usr'] . '</p>';
+                echo '<h2>' . $row['title'] . '</h2>';
+                echo '<p>' . $row['opinion'] . '</p>';
+                echo '<p class="revClass">' . $row['classification'],"/5" . '</p>';
 
 
                 $reviewID = $row['rowid'];
@@ -206,40 +244,40 @@
                 $replyResult = $reply->fetchAll();
 
                 if(count($replyResult) <= 0) {
-                //E SE NAO TIVER resposta
+                    //E SE NAO TIVER resposta
                     if($owner){
-                      echo '
-                      <div id="replyReview">
+                        echo '
+                        <div id="replyReview">
                         <form action="reply.php" method="post">
-                            <textarea name="replyText" maxlength="512" placeholder="Deixa um comentário..." required></textarea>
-                            <input type="hidden" name="review" value="'.$row['rowid'].'"/>
-                            <input type="hidden" name="ID" value="'.$id.'"/>
-                            <input type="submit" name="Reply" value="Comentar">
+                        <textarea name="replyText" maxlength="512" placeholder="Deixa um comentário..." required></textarea>
+                        <input type="hidden" name="review" value="'.$row['rowid'].'"/>
+                        <input type="hidden" name="ID" value="'.$id.'"/>
+                        <input type="submit" name="Reply" value="Comentar">
                         </form>
-                      </div>';
+                        </div>';
                     }
 
                 }else{
 
-               //SE TIVER RESPOSTA
+                    //SE TIVER RESPOSTA
 
-               $opinion = $replyResult[0]['opinion'];
-               echo '<div id="replyReview">
+                    $opinion = $replyResult[0]['opinion'];
+                    echo '<div id="replyReview">
                     <h3> A gerencia </h3>
                     <p>'.$opinion.'</p>
                     </div>
-               ';
+                    ';
 
                 }
 
-            echo '</div>';
-            echo '<hr>';
-        }
+                echo '</div>';
+                echo '<hr>';
+            }
 
-        ?>
-    </div>
+            ?>
+        </div>
 
-    <?php
+        <?php
         if(isset($_POST['Edit'])){
             $id = $_POST['id'];
             $name = $_POST['name'];
@@ -253,23 +291,23 @@
             include_once '../Database/Connect.php';
 
             $update = $db->prepare("UPDATE Restaurants SET name = '$name', address = '$address', city = '$city', district = '$district',
-                                                           country = '$country', type = '$type', description = '$description'
-                                                           WHERE rowid = $id");
+                country = '$country', type = '$type', description = '$description'
+                WHERE rowid = $id");
 
-            try{
-                $update->execute();
-            }catch (PDOException $e) {
-                echo 'Error updating';
+                try{
+                    $update->execute();
+                }catch (PDOException $e) {
+                    echo 'Error updating';
+                }
+
+
             }
 
-
-        }
-
-    ?>
+            ?>
 
 
-</body>
+        </body>
 
 
 
-<?php  include_once('../templates/footer.php') ?>
+        <?php  include_once('../templates/footer.php') ?>
