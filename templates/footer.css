@@ -8,3 +8,8 @@ footer{
 footer p {
     text-align:  center;
 }
+
+footer a{
+    text-decoration: none;
+    color: inherit;
+}

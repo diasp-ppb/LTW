@@ -1,5 +1,8 @@
 
 <?php include_once('../templates/header.php') ?>
+<head>
+    <title> Já Comia - Feed </title>
+</head>
 <body>
 
     <?php include_once('../templates/topbar.php') ?>

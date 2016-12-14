@@ -6,6 +6,9 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <?php
+    include_once('../templates/header.php');
+    ?>
 
 </head>
 

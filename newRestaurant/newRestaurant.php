@@ -1,7 +1,10 @@
 <?php include_once '../templates/header.php'; ?>
 <?php include_once '../templates/topbar.php'; ?>
-<script src="newRestaurant.js"></script>
 
+<head>
+    <title> Já Comia - Create New Restaurant </title>
+    <script src="newRestaurant.js"></script>
+</head>
 <body>
     <div id="Intro">
         <img src="../resources/imgNewRestaurant.jpg" />
