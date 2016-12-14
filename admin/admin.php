@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Já Comia - Feed</title>
+    <title>Já Comia - Admin Page</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="../templates/footer.css">
@@ -23,20 +23,20 @@
     //COUNT USERS
     $query = $db->prepare('SELECT COUNT(*) FROM Users');
     $query->execute();
-    $nUsers =  $query->fetchColumn(); 
+    $nUsers =  $query->fetchColumn();
 
     //COUNT RESTAURANTS
 
     $query = $db->prepare('SELECT COUNT(*) FROM Restaurants');
     $query->execute();
-    $Restaurants =  $query->fetchColumn(); 
-   
+    $Restaurants =  $query->fetchColumn();
+
 
    //COUNT Reviews
 
     $query = $db->prepare('SELECT COUNT(*) FROM Reviews');
     $query->execute();
-    $Reviews =  $query->fetchColumn(); 
+    $Reviews =  $query->fetchColumn();
 
 
 
@@ -44,9 +44,9 @@
 
 
     $query = $db->prepare('SELECT COUNT(*) FROM ReviewComments');
-    $query->execute();   
-    $Replies  =  $query->fetchColumn(); 
-   
+    $query->execute();
+    $Replies  =  $query->fetchColumn();
+
 
    $RepliesDivReviews = round($Replies/$Reviews,2);
 
@@ -58,14 +58,14 @@
    //AVG Classification all restaurant
 
     $query = $db->prepare('SELECT AVG(avgClass) FROM Restaurants');
-    $query->execute();   
-    $AVGclassifRest  =  $query->fetchColumn(); 
+    $query->execute();
+    $AVGclassifRest  =  $query->fetchColumn();
 
 
     // COUNT N images Restaurants in DB
     $query = $db->prepare('SELECT COUNT(*) FROM Images');
-    $query->execute();   
-    $Images =   $query->fetchColumn(); 
+    $query->execute();
+    $Images =   $query->fetchColumn();
 
 
 
@@ -75,8 +75,8 @@
 
     // COUNT N images Restaurants in DB
     $query = $db->prepare('SELECT COUNT(*) FROM Users WHERE photo != "" ');
-    $query->execute();   
-    $ImagesUsers =   $query->fetchColumn(); 
+    $query->execute();
+    $ImagesUsers =   $query->fetchColumn();
 
 
 
@@ -84,26 +84,26 @@
 
 
 
-   
+
    //Images Uploads directory size
     $dir = "../resources/uploads";
     $bytes = 0;
     $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir));
-    foreach ($iterator as $i) 
+    foreach ($iterator as $i)
     {
         $bytes += $i->getSize();
     }
 
 
     $bytes=round($bytes/1024);
-   
 
 
 
 
 
 
-    
+
+
 ?>
 
 
@@ -118,10 +118,10 @@
         <th><h3>Opinioes/Restaurante    </h3></th>
         <th><h3>Respostas/Opinioes      </h3></th>
     </tr>
-    <tr>    
+    <tr>
         <td><?php echo $nUsers         ?> </td>
         <td><?php echo $Restaurants    ?> </td>
-        <td><?php echo $Reviews        ?> </td>   
+        <td><?php echo $Reviews        ?> </td>
         <td><?php echo $Replies        ?> </td>
         <td><?php echo $ReviewsDivRest ?> </td>
         <td><?php echo $RepliesDivReviews ?> </td>
@@ -134,13 +134,13 @@
         <th><h3>Nº Imagens  de Restaurantes          </h3></td>
         <th><h3>Nº Imagens  de Utilizadores          </h3></td>
         <th><h3>Tamanho Dir Uploads                  </h3></td>
-        
+
     </tr>
 
-    <tr>    
+    <tr>
         <td><?php echo $UserDivRes                      ?> </td>
         <td><?php echo $OpinDivUser                     ?> </td>
-        <td><?php echo $AVGclassifRest                  ?> </td>   
+        <td><?php echo $AVGclassifRest                  ?> </td>
         <td><?php echo $Images                          ?> </td>
         <td><?php echo $ImagesUsers                     ?> </td>
         <td><?php echo $bytes?> kB                         </td>
@@ -148,7 +148,7 @@
 
  </table>
 
-</div>  
+</div>
 
 <div id="editDatabase">
 
@@ -182,7 +182,7 @@
 </form>
 
 <form>
-     <input  type="submit" name ="feed" value="feed" />
+    <a href="../feed/feed.php"> Feed </a>
 </form>
 
 <form>
