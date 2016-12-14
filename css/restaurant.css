@@ -8,30 +8,30 @@ body {
     min-width: 700px;
 }
 
-#topbar{
+#topbar {
     margin-top: -70px;
 }
 
-#main{
+#main {
     width: 1000px;
     margin: auto;
     margin-top: 70px;
 }
 
-.galleria{
+.galleria {
     width: 400px;
     height: 300px;
     background: #000;
     display: inline-block;
 }
 
-#main h1{
+#main h1 {
     margin-left: 30px;
     display: inline;
     position: absolute;
 }
 
-#main h2{
+#main h2 {
     margin-left: 30px;
     display: inline;
     margin-top: 110px;
@@ -46,51 +46,52 @@ body {
     position: absolute;
 }
 
-#main h2:nth-child(3){
+#main h2:nth-child(3) {
     position: absolute;
     margin-top: 70px;
 }
 
-.avgClass{
+.avgClass {
     display: inline;
     margin-top: 80px;
     position: absolute;
 }
 
-#main p{
+#main p {
     margin-left: 30px;
     display: inline;
     margin-top: 150px;
     position: absolute;
 }
 
-#reviews{
+#reviews {
     width: 1000px;
     margin: auto;
 }
 
-.review{
+.review {
     height: 150px;
     word-wrap: break-word;
 }
-.review p:first-child{
+
+.review p:first-child {
     margin-left: 00px;
     position: absolute;
     margin-top: 45px;
     font-size: 22px;
 }
 
-.review  h2 {
+.review h2 {
     margin-left: 150px;
     min-height: 31px;
 }
 
-.review p{
+.review p {
     margin-left: 150px;
     min-height: 31px;
 }
 
-.revClass{
+.revClass {
     float: right;
     margin-right: 40px;
     margin-top: -60px;
@@ -105,43 +106,42 @@ body {
     z-index: 10;
 }
 
-#mapid p{
+#mapid p {
     display: none;
 }
 
-#editRestaurant{
+#editRestaurant {
     margin-top: 100px;
     display: none;
 }
 
-#editRestaurant p{
+#editRestaurant p {
     margin-left: 0px;
     margin-top: -50px;
     font-size: 26px;
 }
 
-#editRestaurant input:first-child{
+#editRestaurant input:first-child {
     display: none;
 }
 
-#editRestaurant input{
+#editRestaurant input {
     display: block;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-#editRestaurant textarea{
+#editRestaurant textarea {
     display: block;
     width: 500px;
     height: 200px;
 }
 
-
-#replyReview{
+#replyReview {
     display: block;
 }
 
-#replyReview form input{
+#replyReview form input {
     display: inline-block;
     display: inline-block;
     width: 70px;
@@ -156,7 +156,7 @@ body {
     margin-top: -10px;
 }
 
-#replyReview p{
+#replyReview p {
     display: inline-block;
     margin-left: 40px;
 }
@@ -166,15 +166,15 @@ body {
     margin-bottom: 40px;
 }
 
-#addForm{
+#addForm {
     display: inline;
     margin-left: 30px;
 }
 
-#addForm input[type="submit"]{
+#addForm input[type="submit"] {
     display: none;
 }
 
-.userOpinion{
+.userOpinion {
     max-width: 750px;
 }

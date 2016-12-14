@@ -12,11 +12,11 @@ $(document).ready(function() {
             },
             async: false,
             success: function(data) {
-                array = data;
+                array = JSON.parse(data);
             }
         });
 
-        if (array.size == 0) {
+        if (array.length == 0) {
             name[0].setCustomValidity('');
         } else {
             name[0].setCustomValidity('The desired name/address combination already exists.');
