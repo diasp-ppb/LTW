@@ -162,7 +162,7 @@
 </form>
 
 
-<form >
+<form action="deleteRestaurant.php" method="post">
     <label> Apagar Restaurante </label>
     <input  type="text" name="name" placeholder="nome"/>
     <input  type="text" name="street" placeholder="rua"/>
