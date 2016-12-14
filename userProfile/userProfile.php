@@ -40,11 +40,11 @@
       <form action="updateUser.php"  method="post" enctype="multipart/form-data">
       <div>
         <label> Nome </label>
-          <input type="text" name="name" value="<?php echo $name ?>"required />
+          <input type="text" name="name" pattern="[A-Za-z0-9-_.]+" title="Insert letters, numbers, '-', '_' and '.' only." value="<?php echo $name ?>"required />
       </div>
       <div>
         <label> Email </label>
-          <input type="text" name="email" value="<?php echo $email ?>"required />
+          <input type="text" name="email" pattern="[A-Za-z0-9-_.]+" title="Insert letters, numbers, '-', '_' and '.' only." value="<?php echo $email ?>"required />
       </div>
 
 

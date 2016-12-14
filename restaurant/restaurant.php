@@ -283,14 +283,14 @@
 
         <?php
         if(isset($_POST['Edit'])){
-            $id = $_POST['id'];
-            $name = $_POST['name'];
-            $address = $_POST['address'];
-            $city = $_POST['city'];
-            $district = $_POST['district'];
-            $country = $_POST['country'];
-            $type = $_POST['type'];
-            $description = $_POST['description'];
+            $id = htmlentities($_POST['id']);
+            $name = htmlentities($_POST['name']);
+            $address = htmlentities($_POST['address']);
+            $city = htmlentities($_POST['city']);
+            $district = htmlentities($_POST['district']);
+            $country = htmlentities($_POST['country']);
+            $type = htmlentities($_POST['type']);
+            $description = htmlentities($_POST['description']);
 
             include_once '../Database/Connect.php';
 

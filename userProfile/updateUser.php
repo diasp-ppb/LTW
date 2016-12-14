@@ -1,12 +1,12 @@
 <?php
 
     include_once('../Database/Connect.php');
-    
+
     session_start();
-   
+
     if(isset($_SESSION['user'])){
 
-   
+
     $name = $_SESSION['user'];
     $query = $db->prepare('SELECT * ,rowID FROM Users WHERE usr = "'.$name.'"');
 
@@ -20,9 +20,9 @@
      {
          try{
 
-             $newName = $_POST['name'];
-             $email= $_POST['email'];
-             
+             $newName = htmlentities($_POST['name']);
+             $email= htmlentities($_POST['email']);
+
 
              $update = $db->prepare('UPDATE Users SET  usr="'.$newName.'" ,email = "'.$email.'" WHERE usr="'.$name.'"');
 
@@ -33,7 +33,7 @@
           {
              echo $Exception;
           }
-       
+
 
      }
 
