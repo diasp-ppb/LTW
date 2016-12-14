@@ -71,6 +71,7 @@ body {
 
 .review{
     height: 150px;
+    word-wrap: break-word;
 }
 .review p:first-child{
     margin-left: 00px;
@@ -172,4 +173,8 @@ body {
 
 #addForm input[type="submit"]{
     display: none;
+}
+
+.userOpinion{
+    max-width: 750px;
 }

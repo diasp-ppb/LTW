@@ -196,7 +196,7 @@
                 echo '<div class="review">';
                 echo '<p>' . $row['usr'] . '</p>';
                 echo '<h2>' . $row['title'] . '</h2>';
-                echo '<p>' . $row['opinion'] . '</p>';
+                echo '<p class="userOpinion">' . $row['opinion'] . '</p>';
                 echo '<p class="revClass">' . $row['classification'],"/5" . '</p>';
 
 
