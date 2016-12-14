@@ -18,7 +18,7 @@
     <div id="main">
         <?php
         if (!isset($_GET['id'])) {
-            header('Location:  ../feed/feed.php');
+            header('Location:  ../pages/feed.php');
         } else {
             $id = $_GET['id'];
         }
@@ -30,7 +30,7 @@
         $result = $query->fetchAll();
 
         if (count($result) != 1) {
-            header('Location: ../feed/feed.php');
+            header('Location: ../pages/feed.php');
         }
 
         $result = $result[0];

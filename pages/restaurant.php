@@ -133,7 +133,7 @@
                 echo '<div id="editRestaurant">';
                 echo '<p>Edit this restaurant: </p>';
 
-                echo '<form action="../actions/restaurant.php"  method="post">';
+                echo '<form action="../pages/restaurant.php"  method="post">';
                 echo '
                 <input type="text" name="id" value=" '. $id . '">
                 <label> Nome </label>
