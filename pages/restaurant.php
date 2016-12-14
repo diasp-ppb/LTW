@@ -27,7 +27,7 @@
             if(!isset($_GET['id']))
             header('Location:  ../feed/feed.php');
             else
-            $id = $_GET['id'];
+            $id = htmlentities($_GET['id']);
 
 
             include_once("../Database/Connect.php");

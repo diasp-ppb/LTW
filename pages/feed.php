@@ -16,8 +16,8 @@
             <form action="feed.php" method="get">
                 <?php
                 if(isset($_GET['rname'])){
-                $rname = $_GET['rname'];
-                $local = $_GET['local'];
+                $rname = htmlentities($_GET['rname']);
+                $local = htmlentities($_GET['local']);
                 }
                 else {
                     $rname = '';
@@ -36,11 +36,11 @@
 <div id="restaurantslist">
     <?php
     if(isset($_GET['rname'])){
-    $rname = $_GET['rname'];
-    $local = $_GET['local'];
+    $rname = htmlentities($_GET['rname']);
+    $local = htmlentities($_GET['local']);
     }
     else if (isset($_GET['search']))
-        $search = $_GET['search'];
+        $search = htmlentities($_GET['search']);
     else{
         $rname = '';
         $local = '';

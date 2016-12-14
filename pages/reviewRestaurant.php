@@ -20,7 +20,7 @@
         if (!isset($_GET['id'])) {
             header('Location:  ../pages/feed.php');
         } else {
-            $id = $_GET['id'];
+            $id = htmlentities($_GET['id']);
         }
 
         include_once("../Database/Connect.php");
@@ -46,7 +46,7 @@
     <div id="review">
         <form action="../actions/submitReview.php" method="POST">
             <?php
-            $id = $_GET['id'];
+            $id = htmlentities($_GET['id']);
             echo '<input type="text" id="restID" name="id" value="'.$id.'"  >';
             ?>
             <input type="text" name="title" placeholder="Title (optional)" autocomplete="off" maxlength="64"/>
