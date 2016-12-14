@@ -4,7 +4,7 @@ $(document).ready(function() {
         var address = $('input[name="address"]');
         var array;
         $.ajax({
-            url: 'existsRestaurant.php',
+            url: '../actions/existsRestaurant.php',
             type: 'post',
             data: {
                 name: name.val(),
