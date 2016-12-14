@@ -14,17 +14,17 @@
         <?php if(isset($_SESSION['user'])) { ?>
         <form action="createRestaurant.php" enctype="multipart/form-data" method="POST">
             <label>Nome</label>
-            <input type="text" name="name" required>
+            <input type="text" name="name" pattern="[a-zA-Z0-9\s]+" title="Insert letters, numbers and spaces only." required>
             <label>Rua</label>
-            <input type="text" name="address" required>
+            <input type="text" name="address" pattern="[a-zA-Z0-9\s]+" title="Insert letters, numbers and spaces only." required>
             <label>Cidade</label>
-            <input type="text" name="city" required>
+            <input type="text" name="city" pattern="[a-zA-Z\s]+" title="Insert letters and spaces only." required>
             <label>Distrito</label>
-            <input type="text" name="district" required>
+            <input type="text" name="district" pattern="[a-zA-Z\s]+" title="Insert letters and spaces only." required>
             <label>País</label>
-            <input type="text" name="country" required>
+            <input type="text" name="country" pattern="[a-zA-Z\s]+" title="Insert letters and spaces only." required>
             <label>Tipo</label>
-            <input type="text" name="type" required>
+            <input type="text" name="type" pattern="[a-zA-Z0-9\s]+" title="Insert letters, numbers and spaces only." required>
             <label>Imagem</label>
             <input type="file" name="fileToUpload" id="fileToUpload">
             <input type="submit" name="submit" value="Create Restaurant">

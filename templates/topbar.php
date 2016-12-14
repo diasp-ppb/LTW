@@ -48,16 +48,16 @@
         </ul>
         <div id="login">
             <form id="login-form" action="../login/login.php" method="POST">
-                <input type="text" name="user" placeholder="Username" pattern="[A-Za-z0-9-_.]+" required/>
-                <input type="password" name="pass" placeholder="Password" pattern="[A-Za-z0-9-_.]+" required/>
+                <input type="text" name="user" placeholder="Username" pattern="[A-Za-z0-9-_.]+" title="Insert letters, numbers, '-', '_' and '.' only." required/>
+                <input type="password" name="pass" placeholder="Password" pattern="[A-Za-z0-9-_.]+" title="Insert letters, numbers, '-', '_' and '.' only." required/>
                 <input type="submit" value="Login"/>
             </form>
         </div>
         <div id="register">
             <form id="register-form" action="../register/register.php" method="POST">
-                <input type="text" name="user" placeholder="Username" pattern="[A-Za-z0-9-_.]+" required/>
-                <input type="password" name="pass" placeholder="Password" pattern="[A-Za-z0-9-_.]+" required/>
-                <input type="password" name="confirm" placeholder="Confirm your password" pattern="[A-Za-z0-9-_.]+" required/>
+                <input type="text" name="user" placeholder="Username" pattern="[A-Za-z0-9-_.]+" title="Insert letters, numbers, '-', '_' and '.' only." required/>
+                <input type="password" name="pass" placeholder="Password" pattern="[A-Za-z0-9-_.]+" title="Insert letters, numbers, '-', '_' and '.' only." required/>
+                <input type="password" name="confirm" placeholder="Confirm your password" pattern="[A-Za-z0-9-_.]+" title="Insert letters, numbers, '-', '_' and '.' only." required/>
                 <input type="email" name="email" placeholder="Email" required/>
                 <input type="submit" value="Register"/>
             </form>
