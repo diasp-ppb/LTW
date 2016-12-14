@@ -9,7 +9,7 @@
 <head>
     <title>Já Comia - Review Restaurant</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/reviewRestaurant.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 </head>
@@ -44,7 +44,7 @@
     </div>
 
     <div id="review">
-        <form action="submitReview.php" method="POST">
+        <form action="../actions/submitReview.php" method="POST">
             <?php
             $id = $_GET['id'];
             echo '<input type="text" id="restID" name="id" value="'.$id.'"  >';

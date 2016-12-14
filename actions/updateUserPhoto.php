@@ -23,7 +23,7 @@ if(isset($_SESSION['user'])){
     }
 
 
-    header("Location: userProfile.php");
+    header("Location: ../pages/userProfile.php");
 }
 
 ?>

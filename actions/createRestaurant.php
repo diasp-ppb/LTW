@@ -38,5 +38,5 @@
          $insertimage->execute();
      }
 
-     header('Location: ../feed/feed.php');
+     header('Location: ../pages/feed.php');
  }

@@ -2,6 +2,7 @@
 <?php include_once('../templates/header.php') ?>
 <head>
     <title> Já Comia - Feed </title>
+    <link rel="stylesheet" href="../css/feed.css">
 </head>
 <body>
 
@@ -72,7 +73,7 @@
     foreach ($result as $row)
     {
         $restid = $row['rowid'];
-        $link = "../restaurant/restaurant.php?id=" . $restid;
+        $link = "../pages/restaurant.php?id=" . $restid;
 
         $imagequery = $db->prepare("SELECT * FROM Images WHERE restaurant = '$restid';");
         try {

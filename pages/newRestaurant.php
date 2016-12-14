@@ -3,7 +3,8 @@
 
 <head>
     <title> Já Comia - Create New Restaurant </title>
-    <script src="newRestaurant.js"></script>
+    <link rel="stylesheet" href="../css/newRestaurant.css">
+    <script src="../scripts/newRestaurant.js"></script>
 </head>
 <body>
     <div id="Intro">
@@ -12,7 +13,7 @@
     </div>
     <div id="FormNewRestaurant">
         <?php if(isset($_SESSION['user'])) { ?>
-        <form action="createRestaurant.php" enctype="multipart/form-data" method="POST">
+        <form action="../actions/createRestaurant.php" enctype="multipart/form-data" method="POST">
             <label>Nome</label>
             <input type="text" name="name" pattern="[a-zA-Z0-9\s]+" title="Insert letters, numbers and spaces only." required>
             <label>Rua</label>

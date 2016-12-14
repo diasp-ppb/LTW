@@ -18,5 +18,5 @@ if (isset($_POST['Submit'])) {
     } catch (PDOException $e) {
     }
 
-    header('Location: ../restaurant/restaurant.php?id='.$id);
+    header('Location: ../pages/restaurant.php?id='.$id);
 }

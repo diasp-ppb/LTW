@@ -13,7 +13,7 @@ if (isset($_POST["user"])) {
     $stmt = $db->prepare("INSERT INTO Users VALUES ('".$user."','".$mdPass."','".$email."', NULL)");
     $result = $stmt->execute();
 
-    include_once('../login/login.php');
+    include_once('../pages/login.php');
 }
 
 

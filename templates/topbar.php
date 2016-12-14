@@ -11,11 +11,11 @@
     <div id="topbar">
         <div id="topbar-elements">
             <h1>
-                <a href="../feed/feed.php">Já Comia</a>
+                <a href="../pages/feed.php">Já Comia</a>
             </h1>
 
             <div id="searchbar">
-                <form action="../feed/feed.php" method="get">
+                <form action="../pages/feed.php" method="get">
                     <input type="text" name="search" pattern="[a-zA-Z0-9\s]+" title="Insert letters, numbers and spaces only." placeholder="Search">
                 </form>
             </div>
@@ -34,11 +34,11 @@
                 </button>
 
                 <div id="topbar-dropdown" class="dropdown-content">
-                  <a href="../userProfile/userProfile.php">My Profile</a>
-                  <a href="../newRestaurant/newRestaurant.php">Create Restaurant</a>
+                  <a href="../pages/userProfile.php">My Profile</a>
+                  <a href="../pages/newRestaurant.php">Create Restaurant</a>
                   <?php
                     if($_SESSION["user"] == "admin")
-                        echo '<a href="../admin/admin.php">Admin Page </a>';
+                        echo '<a href="../pages/admin.php">Admin Page </a>';
                   ?>
                   <a href="../login/logout.php">Log Out</a>
                 </div>

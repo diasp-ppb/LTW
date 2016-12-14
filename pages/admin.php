@@ -4,7 +4,7 @@
 <head>
     <title>Já Comia - Admin Page</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="../templates/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
@@ -158,14 +158,14 @@
 
 
 
-<form action="deleteUser.php" method="post">
+<form action="../actions/deleteUser.php" method="post">
     <label> Apagar Utilizador </label>
     <input  type="text" name="name" placeholder="nome"/>
     <input   type="submit" name ="UserC" value="Apagar" />
 </form>
 
 
-<form action="deleteRestaurant.php" method="post">
+<form action="../actions/deleteRestaurant.php" method="post">
     <label> Apagar Restaurante </label>
     <input  type="text" name="name" placeholder="nome"/>
     <input  type="text" name="street" placeholder="rua"/>
@@ -175,7 +175,7 @@
 </form>
 
 
-<form action="deleteOpinion.php" method="post">
+<form action="../actions/deleteOpinion.php" method="post">
     <label> Apagar Opiniao </label>
     <input  type="text" name="class" placeholder="classificação"/>
     <input  type="text" name="user" placeholder="utilizador"/>
@@ -184,7 +184,7 @@
 </form>
 
 <form>
-    <a href="../feed/feed.php"> Feed </a>
+    <a href="../pages/feed.php"> Feed </a>
 </form>
 
 <form>

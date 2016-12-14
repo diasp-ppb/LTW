@@ -34,5 +34,5 @@
     $deleteImages = $db->prepare("DELETE FROM Images WHERE restaurant = '$id';");
     $deleteImages->execute();
 
-    header('Location: admin.php');
+    header('Location: ../pages/admin.php');
 ?>

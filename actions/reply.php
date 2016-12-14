@@ -14,6 +14,6 @@
         echo $Exception;
     }
 
-    header('Location: ./restaurant.php?id='.htmlentities($_POST['ID']));
+    header('Location: ../pages/restaurant.php?id='.htmlentities($_POST['ID']));
 
 ?>

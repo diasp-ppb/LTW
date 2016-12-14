@@ -26,7 +26,7 @@
     if($count >=1 ){
 
         $id =$user['rowid'];
-        
+
         $deleteOwner = $db->prepare("DELETE FROM Owners WHERE owner ='$id'");
         $deleteOwner-> execute();
 
@@ -68,6 +68,6 @@
     echo 1;
 //}
 
-
+    header('Location: ../pages/admin.php');
 
 ?>

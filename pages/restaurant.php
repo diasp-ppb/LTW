@@ -9,15 +9,15 @@
 <head>
     <title>Já Comia - Restaurant</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/restaurant.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="../templates/footer.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
-    <script src="../templates/searchMap/l.control.geosearch.js"></script>
-    <script src="../templates/searchMap/l.geosearch.provider.openstreetmap.js"></script>
-    <script src="restaurantMap.js"></script>
-    <script src="restaurant.js"></script>
+    <script src="../scripts/searchMap/l.control.geosearch.js"></script>
+    <script src="../scripts/searchMap/l.geosearch.provider.openstreetmap.js"></script>
+    <script src="../scripts/restaurantMap.js"></script>
+    <script src="../scripts/restaurant.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.1/galleria.min.js"></script>
 </head>
 
@@ -102,7 +102,7 @@
 
             echo '<p> Type: ' .  $result['type'] . '</p>';
 
-            $reviewLink = "../reviewRestaurant/reviewRestaurant.php?id=" . $id;
+            $reviewLink = "../pages/reviewRestaurant.php?id=" . $id;
 
 
             if(isset($_SESSION["user"])){
@@ -112,7 +112,7 @@
                 else
                     echo '<a href="#" onclick="changeEdit();"> Edit Restaurant </a>';
                 ?>
-                <form id="addForm" action="addPhoto.php" method="post" enctype="multipart/form-data">
+                <form id="addForm" action="../actions/addPhoto.php" method="post" enctype="multipart/form-data">
                     <?php
                         echo '<input style="display:none;" type="text" name="id" value="' . $id . '">';
                     ?>
@@ -133,7 +133,7 @@
                 echo '<div id="editRestaurant">';
                 echo '<p>Edit this restaurant: </p>';
 
-                echo '<form action="restaurant.php"  method="post">';
+                echo '<form action="../actions/restaurant.php"  method="post">';
                 echo '
                 <input type="text" name="id" value=" '. $id . '">
                 <label> Nome </label>
@@ -164,7 +164,7 @@
             <?php
             if($owner)
             {
-                echo '<form action="editPhoto.php" method="post" enctype="multipart/form-data">';
+                echo '<form action="../actions/editPhoto.php" method="post" enctype="multipart/form-data">';
                 echo '<input style="display:none;" type="text" name="id" value=" '. $id . '">';
                 echo '<input type="file" name="fileToUpload" id="fileToUpload">';
                 echo '<input type="submit" name="EditPhoto" value="editPhoto">';
@@ -214,7 +214,7 @@
                     if($owner){
                         echo '
                         <div id="replyReview">
-                        <form action="reply.php" method="post">
+                        <form action="../actions/reply.php" method="post">
                         <textarea name="replyText" maxlength="512" placeholder="Deixa um comentário..." required></textarea>
                         <input type="hidden" name="review" value="'.$row['rowid'].'"/>
                         <input type="hidden" name="ID" value="'.$id.'"/>

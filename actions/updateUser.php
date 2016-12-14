@@ -38,6 +38,6 @@
      }
 
 
-     header("Location: ../userProfile/userProfile.php");
+     header("Location: ../pages/userProfile.php");
     }
 ?>

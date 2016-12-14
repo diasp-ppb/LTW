@@ -11,7 +11,7 @@ if(uploadImage()){
     $insert->execute();
 }
 
-$link =  "restaurant.php?id=" . $id;
+$link =  "../pages/restaurant.php?id=" . $id;
 header('Location:'. $link);
 
 ?>
