@@ -85,11 +85,11 @@ $(document).ready(function() {
             },
             async: false,
             success: function(data) {
-                array = data;
+                array = JSON.parse(data);
             }
         });
 
-        if (array.size != 0) {
+        if (array.length != 0) {
             user[0].setCustomValidity('The desired username is already in use. Please select a different one.');
         } else {
             user[0].setCustomValidity('');
@@ -107,11 +107,11 @@ $(document).ready(function() {
             },
             async: false,
             success: function(data) {
-                array = data;;
+                array = JSON.parse(data);
             }
         });
 
-        if (array.size == 0) {
+        if (array.length == 0) {
             email[0].setCustomValidity('');
         } else {
             email[0].setCustomValidity('The desired email is already in use. Please select a different one.');
