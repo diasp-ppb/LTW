@@ -2,7 +2,7 @@ $(document).ready(function() {
     $('input[name="name"], input[name="address"]').change(function() {
         var name = $('input[name="name"]');
         var address = $('input[name="address"]');
-        var exists;
+        var array;
         $.ajax({
             url: 'existsRestaurant.php',
             type: 'post',
@@ -12,14 +12,14 @@ $(document).ready(function() {
             },
             async: false,
             success: function(data) {
-                exists = data;
+                array = data;
             }
         });
 
-        if (exists == 1) {
-            name[0].setCustomValidity('The desired name/address combination already exists.');
-        } else {
+        if (array.size == 0) {
             name[0].setCustomValidity('');
+        } else {
+            name[0].setCustomValidity('The desired name/address combination already exists.');
         }
     });
 });
