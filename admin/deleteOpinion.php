@@ -33,5 +33,6 @@ $delete = $db->prepare("DELETE FROM REVIEWS WHERE userID ='$uID'
                             AND classification ='$classification'");
 $delete->execute();
 
+header('Location: admin.php');
 
 ?>
