@@ -172,10 +172,9 @@
 </form>
 
 
-<form >
+<form action="deleteOpinion.php" method="post">
     <label> Apagar Opiniao </label>
-    <input  type="text" name="title" placeholder="titulo"/>
-    <input  type="text" name="content" placeholder="conteudo"/>
+    <input  type="text" name="class" placeholder="classificação"/>
     <input  type="text" name="user" placeholder="utilizador"/>
     <input  type="text" name="restaurant" placeholder="restaurante"/>
     <input  type="submit" name ="ReviewC" value="Apagar" />
