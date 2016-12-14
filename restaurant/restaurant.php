@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 
+<?php
+    include_once('../templates/header.php');
+    include_once('../templates/topbar.php');
+?>
+
 <head>
     <title>Já Comia - Restaurant</title>
     <meta charset="UTF-8">
@@ -11,57 +16,14 @@
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
     <script src="../templates/searchMap/l.control.geosearch.js"></script>
     <script src="../templates/searchMap/l.geosearch.provider.openstreetmap.js"></script>
-    <script>
-
-    function loadMap(){
-        var mymap = L.map('mapid').setView([51.505, -0.09], 13);
-        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-            maxZoom: 18,
-        }).addTo(mymap);
-
-        var search = new L.Control.GeoSearch({
-            provider: new L.GeoSearch.Provider.OpenStreetMap()
-        }).addTo(mymap);
-
-        var local = document.getElementById('restloc').innerHTML;
-        search.geosearch(local);
-
-    }
-    window.onload = loadMap;
-    </script>
+    <script src="restaurantMap.js"></script>
     <script src="restaurant.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.1/galleria.min.js"></script>
+</head>
 
-    <script>
-    $(document).ready(
-        function(){
-            $('#fileToUpload').change(
-                function(){
-                    if ($(this).val()) {
-                        $('#submitPhoto').css("display", "inline");
-                    }
-                }
-            );
-        });
-
-        </script>
-
-    <?php
-    include_once('../templates/header.php');
-    ?>
-    </head>
-
-
-    <body>
-
+<body>
+    <div id="main">
         <?php
-        include_once('../templates/topbar.php');
-        ?>
-        <div id="main">
-            <?php
             if(!isset($_GET['id']))
             header('Location:  ../feed/feed.php');
             else

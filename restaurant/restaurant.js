@@ -12,6 +12,13 @@ function changeEdit(){
     }
 }
 
-
-
-
+$(document).ready(
+    function(){
+        $('#fileToUpload').change(
+            function(){
+                if ($(this).val()) {
+                    $('#submitPhoto').css("display", "inline");
+                }
+            }
+        );
+    });
